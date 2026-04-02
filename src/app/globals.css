@@ -2,25 +2,189 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111111;
+  --primary: #fb2576;
+  --accent: #332fd0;
+  --muted: #f3f4f6;
+  --card-bg: #ffffff;
+  --border: #e5e7eb;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-card-bg: var(--card-bg);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --foreground: #ffffff;
+    --primary: #fb2576;
+    --accent: #332fd0;
+    --muted: #1a1a1a;
+    --card-bg: #111111;
+    --border: #333333;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.heading-gradient {
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-mask {
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.btn-premium {
+  @apply px-8 py-3 rounded-full font-semibold transition-all duration-300;
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(251, 37, 118, 0.39);
+}
+
+.btn-premium:hover {
+  @apply scale-105;
+  box-shadow: 0 6px 20px rgba(251, 37, 118, 0.23);
+}
+
+.card-hover {
+  @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl;
+}
+
+/* TipTap Content Styling */
+.tiptap-content {
+  line-height: 1.8;
+  font-size: 1.25rem;
+}
+
+.tiptap-content h1 { font-size: 3rem; font-weight: 900; margin: 2.5rem 0 1.5rem; letter-spacing: -0.05em; line-height: 1.1; }
+.tiptap-content h2 { font-size: 2.25rem; font-weight: 800; margin: 2rem 0 1.2rem; letter-spacing: -0.04em; line-height: 1.2; }
+.tiptap-content h3 { font-size: 1.75rem; font-weight: 700; margin: 1.8rem 0 1rem; }
+.tiptap-content p { margin-bottom: 1.5rem; color: rgba(var(--foreground-rgb), 0.85); }
+.tiptap-content ul, .tiptap-content ol { padding-left: 2rem; margin-bottom: 2rem; }
+.tiptap-content ul { list-style: disc; }
+.tiptap-content ol { list-style: decimal; }
+.tiptap-content li { margin-bottom: 0.75rem; }
+.tiptap-content blockquote {
+  border-left: 6px solid #fb2576;
+  padding: 0.5rem 0 0.5rem 1.8rem;
+  font-style: italic;
+  color: rgba(var(--foreground-rgb), 0.65);
+  margin: 2.5rem 0;
+  font-size: 1.5rem;
+}
+.tiptap-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 40px;
+  margin: 3rem 0;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+.tiptap-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 3rem 0;
+  overflow-x: auto;
+  display: block;
+}
+.tiptap-content th, .tiptap-content td {
+  border: 1px solid rgba(var(--foreground-rgb), 0.1);
+  padding: 15px 25px;
+  text-align: left;
+  min-width: 150px;
+}
+.tiptap-content th {
+  background: rgba(251, 37, 118, 0.05);
+  font-weight: 900;
+  color: #fb2576;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+.tiptap-content pre {
+  background: #0d0d0d;
+  color: #e5e5e5;
+  padding: 2.5rem;
+  border-radius: 35px;
+  overflow-x: auto;
+  margin: 2.5rem 0;
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.tiptap-content code {
+  background: rgba(251, 37, 118, 0.1);
+  color: #fb2576;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+.tiptap-content pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: 1em;
+}
+.tiptap-content a {
+  color: #fb2576;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 800;
+  transition: all 0.2s;
+}
+.tiptap-content a:hover {
+  opacity: 0.8;
+}
+.tiptap-content mark {
+  background: rgba(251, 37, 118, 0.25);
+  color: #fb2576;
+  padding: 0 0.4rem;
+  border-radius: 6px;
 }
