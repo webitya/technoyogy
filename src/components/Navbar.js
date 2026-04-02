@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed w-full z-[100] transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm ${isScrolled ? 'py-3' : 'py-4'}`}>
+      <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm ${isScrolled ? 'py-3' : 'py-4'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <Link href="/" className="relative h-8 w-auto flex items-center gap-3 group">
             <img src="/technoyogylogo.png" alt="" className="h-full w-auto object-contain transition-transform group-hover:scale-105" />
