@@ -52,18 +52,18 @@ export default async function AllBlogs() {
                       alt={blog.title}
                       className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute top-6 left-6 px-4 py-2 bg-[#fb2576] text-white rounded-[2px] text-[10px] font-black tracking-widest uppercase shadow-lg shadow-[#fb2576]/30">
+                    <div className="absolute top-6 left-6 px-4 py-2 bg-[#fb2576] text-white rounded-[2px] text-[10px] font-bold tracking-widest uppercase shadow-lg shadow-[#fb2576]/30">
                       {blog.category || "TECH"}
                     </div>
                   </div>
                   <div className="flex flex-col gap-3 p-4">
-                    <h3 className="text-xl font-black leading-tight group-hover:text-[#fb2576] transition-colors line-clamp-2 uppercase tracking-tight italic">
+                    <h3 className="text-xl font-bold leading-tight group-hover:text-[#fb2576] transition-colors line-clamp-2 uppercase tracking-tight">
                       {blog.title}
                     </h3>
                     <p className="text-gray-500 line-clamp-3 text-base leading-relaxed font-medium">
                       {blog.excerpt || "Exploring future tech, tactical productivity, and lifestyle engineering."}
                     </p>
-                    <div className="flex items-center pt-4 border-t border-gray-50 text-[10px] font-black text-gray-300 uppercase tracking-widest italic">
+                    <div className="flex items-center pt-4 border-t border-gray-50 text-[10px] font-bold text-gray-300 uppercase tracking-widest">
                        <span>{new Date(blog.createdAt || Date.now()).toLocaleDateString()}</span>
                     </div>
                   </div>

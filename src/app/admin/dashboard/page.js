@@ -41,7 +41,7 @@ export default async function AdminDashboard({ searchParams }) {
 
       {/* Header - Compact & Sharp */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
-        <h1 className="text-2xl font-black text-[#1a1a1a] tracking-widest uppercase italic">DASHBOARD</h1>
+        <h1 className="text-2xl font-bold text-[#1a1a1a] tracking-widest uppercase">DASHBOARD</h1>
         <Link href="/admin/dashboard/new" className="admin-btn-primary py-2.5 px-6">
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" />
@@ -59,8 +59,8 @@ export default async function AdminDashboard({ searchParams }) {
             </svg>
           </div>
           <div>
-            <p className="text-2xl font-black text-[#1a1a1a] tracking-tighter">{totalBlogs}</p>
-            <p className="text-[9px] font-black tracking-widest text-gray-400 uppercase">PUBLISHED</p>
+            <p className="text-2xl font-bold text-[#1a1a1a] tracking-tighter">{totalBlogs}</p>
+            <p className="text-[9px] font-bold tracking-widest text-gray-400 uppercase">PUBLISHED</p>
           </div>
         </div>
         <div className="stat-card">

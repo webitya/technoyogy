@@ -20,19 +20,24 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="pt-32 pb-16 bg-[#111111] text-white">
+    <footer className="pt-16 pb-12 bg-[#111111] text-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-white/10 pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 border-b border-white/5 pb-12">
 
           {/* Brand & About */}
-          <div className="flex flex-col gap-8">
-            <Link href="/" className="relative h-10 w-fit flex items-center">
-              <img src="/technoyogylogo.png" alt="Technoyogyx" className="h-full w-auto object-contain brightness-0 invert" />
+          <div className="flex flex-col gap-6">
+            <Link href="/" className="relative h-8 w-fit flex items-center">
+              <img 
+                src="/technoyogylogo.png" 
+                alt="Technoyogyx" 
+                className="h-full w-auto object-contain"
+                style={{ filter: 'brightness(0) invert(1)' }} 
+              />
             </Link>
-            <p className="text-white/60 text-lg leading-relaxed">
-              Explore the latest in technology, lifestyle, and innovation. Stay ahead of the curve with expert insights from Yog Prakash Sah.
+            <p className="text-white/50 text-sm leading-relaxed max-w-xs">
+              Next-gen insights on technology, lifestyle, and innovation by Yog Prakash Sah.
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
               {socialIcons.map(({ href, icon, label }) => (
                 <a
                   key={label}
@@ -40,7 +45,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300"
+                  className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300 scale-90"
                 >
                   {icon}
                 </a>
@@ -49,9 +54,9 @@ const Footer = () => {
           </div>
 
           {/* Useful Links */}
-          <div className="flex flex-col gap-8">
-            <h3 className="text-2xl font-bold">Useful Links</h3>
-            <ul className="flex flex-col gap-4 text-white/60 text-lg">
+          <div className="flex flex-col gap-6">
+            <h3 className="text-base font-bold uppercase tracking-widest text-[#fb2576]">Links</h3>
+            <ul className="flex flex-col gap-3 text-white/50 text-sm font-medium">
               <li><Link href="/" className="hover:text-primary transition-colors">Home</Link></li>
               <li><Link href="/blogs" className="hover:text-primary transition-colors">Blogs</Link></li>
               <li><Link href="/about" className="hover:text-primary transition-colors">About Me</Link></li>
@@ -59,66 +64,43 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Follow Us */}
-          <div className="flex flex-col gap-8">
-            <h3 className="text-2xl font-bold">Follow Us</h3>
-            <ul className="flex flex-col gap-4 text-white/60 text-lg">
-              <li>
-                <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex items-center gap-3">
-                  <IgSVG /> Instagram
-                </a>
-              </li>
-              <li>
-                <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex items-center gap-3">
-                  <YtSVG /> YouTube
-                </a>
-              </li>
-              <li>
-                <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex items-center gap-3">
-                  <FbSVG /> Facebook
-                </a>
-              </li>
-              <li>
-                <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex items-center gap-3">
-                  <TgSVG /> Telegram
-                </a>
-              </li>
-              <li>
-                <a href={SOCIAL_LINKS.pinterest} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors flex items-center gap-3">
-                  <PinSVG /> Pinterest
-                </a>
-              </li>
+          {/* Connect */}
+          <div className="flex flex-col gap-6">
+            <h3 className="text-base font-bold uppercase tracking-widest text-[#fb2576]">Connect</h3>
+            <ul className="flex flex-col gap-3 text-white/50 text-sm font-medium">
+              <li><a href={SOCIAL_LINKS.instagram} className="hover:text-primary transition-all">Instagram</a></li>
+              <li><a href={SOCIAL_LINKS.youtube} className="hover:text-primary transition-all">YouTube</a></li>
+              <li><a href={SOCIAL_LINKS.telegram} className="hover:text-primary transition-all">Telegram</a></li>
+              <li><a href={SOCIAL_LINKS.facebook} className="hover:text-primary transition-all">Facebook</a></li>
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div className="flex flex-col gap-8">
-            <h3 className="text-2xl font-bold">Contact Info</h3>
-            <ul className="flex flex-col gap-6 text-white/60 text-lg">
-              <li className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary"><Mail size={18} /></div>
+          {/* Contact */}
+          <div className="flex flex-col gap-6">
+            <h3 className="text-base font-bold uppercase tracking-widest text-[#fb2576]">Registry</h3>
+            <ul className="flex flex-col gap-4 text-white/50 text-sm font-medium">
+              <li className="flex items-center gap-3">
+                <Mail size={14} className="text-primary" />
                 <span>contact@technoyogyx.com</span>
               </li>
-              <li className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                  <TgSVG />
-                </div>
-                <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">t.me/technoyogy</a>
-              </li>
-              <li className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary"><MapPin size={18} /></div>
-                <span>India</span>
+              <li className="flex items-center gap-3">
+                 <div className="w-3.5 h-3.5"><TgSVG /></div>
+                 <span>t.me/technoyogy</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-white/40 text-sm">
-          <p>© 2026 Technoyogyx. All rights reserved by Yog Prakash Sah.</p>
-          <div className="flex gap-8 mt-4 md:mt-0">
-            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+        <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-white/30 text-[10px] font-bold uppercase tracking-widest border-t border-white/5 mt-8">
+          <p>© 2026 Technoyogyx. Built by Yog Prakash Sah.</p>
+          <div className="flex gap-6 mt-4 md:mt-0">
+            <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="#" className="hover:text-white transition-colors">Terms</Link>
           </div>
+        </div>
+
+        <div className="w-full flex justify-center pt-6 text-[10px] font-medium tracking-wide text-white/20">
+           <p>Website Design By <a href="https://webitya.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-all">Webitya</a></p>
         </div>
       </div>
     </footer>
