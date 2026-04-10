@@ -49,7 +49,7 @@ button, a, select, input[type="file"] {
   background: var(--admin-bg);
 }
 
-/* Editor Toolbar - Sharp */
+/* Editor Toolbar - Sharp & Sticky */
 .tiptap-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -57,7 +57,7 @@ button, a, select, input[type="file"] {
   padding: 8px 12px;
   background: #ffffff;
   border: 1px solid var(--admin-border);
-  border-bottom: none;
+  border-bottom: 2px solid var(--primary-light);
   border-radius: var(--radius) var(--radius) 0 0;
 }
 

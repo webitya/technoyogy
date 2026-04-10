@@ -37,6 +37,7 @@ const Navbar = () => {
           <div className="hidden md:flex gap-8 items-center font-bold uppercase tracking-widest text-[11px]">
             <Link href="/" className="hover:text-primary transition-colors">Home</Link>
             <Link href="/blogs" className="hover:text-primary transition-colors">Blogs</Link>
+            <Link href="/shop" className="hover:text-primary transition-all font-black text-[#7a3983] border-b-2 border-[#7a3983]">Shop</Link>
             <Link href="/about" className="hover:text-primary transition-colors">About</Link>
             <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
             <Link href="/admin" className="px-5 py-2 bg-primary text-white rounded-[2px] hover:shadow-lg hover:shadow-primary/20 transition-all">Sign In</Link>
@@ -84,6 +85,7 @@ const Navbar = () => {
                 <div className="flex flex-col gap-8 text-2xl font-bold uppercase tracking-tighter text-[#1a1a1a]">
                   <Link href="/" onClick={() => setIsOpen(false)} className="hover:text-primary transition-colors w-fit">Home</Link>
                   <Link href="/blogs" onClick={() => setIsOpen(false)} className="hover:text-primary transition-colors w-fit">Blogs</Link>
+                  <Link href="/shop" onClick={() => setIsOpen(false)} className="text-[#7a3983] transition-colors w-fit">Shop</Link>
                   <Link href="/about" onClick={() => setIsOpen(false)} className="hover:text-primary transition-colors w-fit">About</Link>
                   <Link href="/contact" onClick={() => setIsOpen(false)} className="hover:text-primary transition-colors w-fit">Contact</Link>
                 </div>

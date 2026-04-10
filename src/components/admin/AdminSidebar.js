@@ -39,6 +39,15 @@ const navItems = [
       </svg>
     ),
   },
+  {
+    label: 'SHOP',
+    href: '/admin/dashboard/shop',
+    icon: (
+      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+      </svg>
+    ),
+  },
 ];
 
 export default function AdminSidebar() {
@@ -61,7 +70,7 @@ export default function AdminSidebar() {
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
             </svg>
           </div>
-          <span className="text-[#1a1a1a] font-black tracking-widest text-[12px] uppercase">Technoyogy<span className="text-[#7a3983]">x</span></span>
+          <span className="text-[#1a1a1a] font-black tracking-widest text-[12px] uppercase">Technoyogy<span className="text-[#7a3983]">ai</span></span>
         </Link>
       </div>
 
