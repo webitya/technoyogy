@@ -41,7 +41,7 @@ const Hero = () => {
         >
           <div className="relative w-full h-full max-w-[500px]">
             <img
-              src="/hero-blogger.png"
+              src="/hero.webp"
               alt="Yog Prakash Sah"
               className="w-full h-full object-cover rounded-[5px] shadow-2xl relative z-10 grayscale-[0.2] hover:grayscale-0 transition-all duration-700 border-4 border-white"
             />
