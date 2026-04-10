@@ -3,8 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #111111;
-  --primary: #fb2576;
-  --accent: #332fd0;
+  --primary: #7a3983;
+  --accent: #442152;
   --muted: #f3f4f6;
   --card-bg: #ffffff;
   --border: #e5e7eb;
@@ -26,7 +26,7 @@
   :root {
     --background: #ffffff;
     --foreground: #1a1a1a;
-    --primary: #fb2576;
+    --primary: #7a3983;
   }
 }
 
@@ -87,12 +87,12 @@ h1, h2, h3, h4, h5, h6 {
   @apply px-8 py-3 rounded-full font-semibold transition-all duration-300;
   background: var(--primary);
   color: white;
-  box-shadow: 0 4px 14px 0 rgba(251, 37, 118, 0.39);
+  box-shadow: 0 4px 14px 0 rgba(122, 57, 131, 0.39);
 }
 
 .btn-premium:hover {
   @apply scale-105;
-  box-shadow: 0 6px 20px rgba(251, 37, 118, 0.23);
+  box-shadow: 0 6px 20px rgba(122, 57, 131, 0.23);
 }
 
 .card-hover {
@@ -114,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
 .tiptap-content ol { list-style: decimal; }
 .tiptap-content li { margin-bottom: 0.75rem; }
 .tiptap-content blockquote {
-  border-left: 6px solid #fb2576;
+  border-left: 6px solid #7a3983;
   padding: 0.5rem 0 0.5rem 1.8rem;
   font-style: italic;
   color: rgba(var(--foreground-rgb), 0.65);
@@ -142,9 +142,9 @@ h1, h2, h3, h4, h5, h6 {
   min-width: 150px;
 }
 .tiptap-content th {
-  background: rgba(251, 37, 118, 0.05);
+  background: rgba(122, 57, 131, 0.05);
   font-weight: 900;
-  color: #fb2576;
+  color: #7a3983;
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
@@ -161,8 +161,8 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(255,255,255,0.05);
 }
 .tiptap-content code {
-  background: rgba(251, 37, 118, 0.1);
-  color: #fb2576;
+  background: rgba(122, 57, 131, 0.1);
+  color: #7a3983;
   padding: 0.3rem 0.6rem;
   border-radius: 8px;
   font-family: monospace;
@@ -175,7 +175,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1em;
 }
 .tiptap-content a {
-  color: #fb2576;
+  color: #7a3983;
   text-decoration: underline;
   text-underline-offset: 4px;
   font-weight: 800;
@@ -185,8 +185,8 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.8;
 }
 .tiptap-content mark {
-  background: rgba(251, 37, 118, 0.25);
-  color: #fb2576;
+  background: rgba(122, 57, 131, 0.25);
+  color: #7a3983;
   padding: 0 0.4rem;
   border-radius: 6px;
 }

@@ -46,7 +46,7 @@ export default async function BlogPost(props) {
       {/* Blog Metadata & Title Container */}
       <section className="pt-8 sm:pt-12 pb-8">
         <div className="max-w-4xl mx-auto px-6 flex flex-col gap-5 items-start text-left">
-           <span className="px-5 py-2 bg-[#fb2576] text-white rounded-[2px] text-[10px] font-bold tracking-[3px] uppercase shadow-lg shadow-[#fb2576]/20">
+           <span className="px-5 py-2 bg-[#7a3983] text-white rounded-[2px] text-[10px] font-bold tracking-[3px] uppercase shadow-lg shadow-[#7a3983]/20">
              {blog.category || "TECH"}
            </span>
            <h1 className="text-3xl sm:text-5xl font-bold leading-[1.1] text-[#1a1a1a] tracking-tighter uppercase">
@@ -76,9 +76,9 @@ export default async function BlogPost(props) {
              </div>
              <div className="flex-1 flex flex-col gap-4 text-center md:text-left">
                 <h4 className="text-2xl font-bold text-[#1a1a1a] uppercase tracking-tight">Yog Prakash Sah</h4>
-                <p className="text-gray-500 text-base md:text-lg leading-relaxed font-medium">Independent creator, technology enthusiast, and the founder of Technoyogyx. Passionate about sharing deep tech insights that help you stay ahead in the digital world.</p>
+                <p className="text-gray-500 text-base md:text-lg leading-relaxed font-medium">Independent creator, technology enthusiast, and the founder of Technoyogyai. Passionate about sharing deep tech insights that help you stay ahead in the digital world.</p>
                 <div className="flex gap-6 justify-center md:justify-start items-center pt-2">
-                    <Link href="#" className="text-[#fb2576] font-bold uppercase tracking-widest text-[10px] border-b-2 border-[#fb2576]/20 hover:border-[#fb2576] transition-all">Follow on Twitter</Link>
+                    <Link href="#" className="text-[#7a3983] font-bold uppercase tracking-widest text-[10px] border-b-2 border-[#7a3983]/20 hover:border-[#7a3983] transition-all">Follow on Twitter</Link>
                     <Link href="#" className="text-gray-400 font-bold uppercase tracking-widest text-[10px] hover:text-[#1a1a1a] transition-colors">Know More</Link>
                 </div>
              </div>

@@ -1,4 +1,4 @@
-// Real Technoyogyx Social Media Links
+// Real Technoyogyai Social Media Links
 export const SOCIAL_LINKS = {
   facebook: 'https://www.facebook.com/share/1DxqhZ9bNw/',
   facebook2: 'https://www.facebook.com/share/18FfUf5aF1/',

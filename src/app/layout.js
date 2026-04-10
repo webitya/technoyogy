@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Technoyogyx - Technology Blogger",
+  title: "Technoyogyai - Technology Blogger",
   description: "Share ideas, technologies and more by Yog Prakash Sah",
 };
 

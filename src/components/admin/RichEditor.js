@@ -84,7 +84,7 @@ export default function RichEditor({ value, onChange }) {
     const label = prompt('Enter button label (e.g. "Buy on Amazon"):', 'Buy Now →');
     if (url && label) {
       editor.chain().focus().insertContent(
-        `<a href="${url}" target="_blank" rel="noopener noreferrer sponsored" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#fb2576,#332fd0);color:white;padding:10px 20px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;margin:8px 0;">${label}</a>`
+        `<a href="${url}" target="_blank" rel="noopener noreferrer sponsored" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#7a3983,#332fd0);color:white;padding:10px 20px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;margin:8px 0;">${label}</a>`
       ).run();
     }
   }, [editor]);

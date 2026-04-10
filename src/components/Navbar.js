@@ -29,7 +29,7 @@ const Navbar = () => {
           <Link href="/" className="relative h-8 w-auto flex items-center gap-3 group">
             <img src="/technoyogylogo.png" alt="" className="h-full w-auto object-contain transition-transform group-hover:scale-105" />
             <span className={`text-xl font-bold tracking-tighter transition-colors group-hover:text-primary ${isOpen ? 'text-black' : isScrolled ? 'text-black' : 'text-black'}`}>
-              Technoyogy<span className="text-primary">x</span>
+              Technoyogy<span className="text-primary">ai</span>
             </span>
           </Link>
 
@@ -44,7 +44,7 @@ const Navbar = () => {
 
           {/* Mobile Toggle */}
           <button className="md:hidden text-foreground relative z-[101]" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={28} className="text-[#fb2576]" /> : <Menu size={28} />}
+            {isOpen ? <X size={28} className="text-[#7a3983]" /> : <Menu size={28} />}
           </button>
         </div>
       </nav>
@@ -69,7 +69,7 @@ const Navbar = () => {
             >
               {/* Close Button Inside Drawer */}
               <button 
-                className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-gray-50 text-[#fb2576] rounded-[2px] transition-all hover:bg-[#fb2576] hover:text-white"
+                className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-gray-50 text-[#7a3983] rounded-[2px] transition-all hover:bg-[#7a3983] hover:text-white"
                 onClick={() => setIsOpen(false)}
               >
                 <X size={24} />
@@ -77,7 +77,7 @@ const Navbar = () => {
 
               <div className="flex flex-col h-full">
                 <div className="mb-12">
-                   <h2 className="text-2xl font-bold tracking-tighter mb-1 uppercase">Technoyogy<span className="text-primary">x</span></h2>
+                   <h2 className="text-2xl font-bold tracking-tighter mb-1 uppercase">Technoyogy<span className="text-primary">ai</span></h2>
                    <p className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">TACTICAL INSIGHTS HUB</p>
                 </div>
 
@@ -102,8 +102,8 @@ const Navbar = () => {
                                 { href: SOCIAL_LINKS.telegram, label: 'Telegram', icon: <TgSVG /> },
                             ].map((social, i) => (
                                 <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" 
-                                    className="flex items-center gap-2.5 p-3 rounded-[2px] border border-gray-50 flex-1 hover:border-[#fb2576] transition-all group">
-                                    <div className="text-gray-400 group-hover:text-[#fb2576] transition-colors scale-75 origin-left">
+                                    className="flex items-center gap-2.5 p-3 rounded-[2px] border border-gray-50 flex-1 hover:border-[#7a3983] transition-all group">
+                                    <div className="text-gray-400 group-hover:text-[#7a3983] transition-colors scale-75 origin-left">
                                         {social.icon}
                                     </div>
                                     <span className="text-[9px] font-bold text-[#1a1a1a] uppercase tracking-widest">

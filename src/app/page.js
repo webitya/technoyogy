@@ -16,7 +16,7 @@ export default function Home() {
       <section className="py-24 bg-gray-50/50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col items-center text-center gap-2 mb-16">
-            <h2 className="text-4xl font-black text-[#1a1a1a] tracking-widest uppercase italic border-b-4 border-[#fb2576] pb-2">LATEST <span className="text-[#fb2576]">INSIGHTS</span></h2>
+            <h2 className="text-4xl font-black text-[#1a1a1a] tracking-widest uppercase italic border-b-4 border-[#7a3983] pb-2">LATEST <span className="text-[#7a3983]">INSIGHTS</span></h2>
             <p className="text-gray-400 max-w-xl text-xs font-black uppercase tracking-widest mt-4">Exploring Future Tech & Tactical Creativity</p>
           </div>
 
@@ -41,7 +41,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col gap-5 sm:gap-6">
-            <span className="text-[#fb2576] font-bold tracking-[3px] uppercase text-[9px]">Evolve With Technoyogyx</span>
+            <span className="text-[#7a3983] font-bold tracking-[3px] uppercase text-[9px]">Evolve With Technoyogyai</span>
             <h2 className="text-3xl sm:text-5xl font-bold leading-[1.1] text-[#1a1a1a] tracking-tight uppercase border-b-4 border-primary/20 pb-2">Leading The International Tech Narrative.</h2>
             <p className="text-base sm:text-lg text-gray-500 leading-relaxed font-medium max-w-lg">
               We benchmark cross-functional technology and lifestyle innovations to keep you ahead in a fast-paced digital ecosystem.

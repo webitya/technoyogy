@@ -65,12 +65,12 @@ export default function HomeBlogs() {
               alt={blog.title}
               className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
             />
-            <div className="absolute top-6 left-6 px-4 py-2 bg-[#fb2576] text-white rounded-[2px] text-xs font-black tracking-widest uppercase shadow-lg shadow-[#fb2576]/30">
+            <div className="absolute top-6 left-6 px-4 py-2 bg-[#7a3983] text-white rounded-[2px] text-xs font-black tracking-widest uppercase shadow-lg shadow-[#7a3983]/30">
               {blog.category || "TECH"}
             </div>
           </div>
           <div className="flex flex-col gap-3 p-4">
-            <h3 className="text-xl font-black leading-tight group-hover:text-[#fb2576] transition-colors line-clamp-2 uppercase tracking-tight italic">
+            <h3 className="text-xl font-black leading-tight group-hover:text-[#7a3983] transition-colors line-clamp-2 uppercase tracking-tight italic">
               {blog.title}
             </h3>
             <p className="text-gray-500 line-clamp-3 text-base leading-relaxed font-medium">

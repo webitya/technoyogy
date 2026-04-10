@@ -41,7 +41,7 @@ export default function Contact() {
          <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col gap-1">
                <h1 className="text-4xl md:text-5xl font-bold text-[#1a1a1a] leading-none tracking-tight uppercase">
-                  CONTACT <span className="text-[#fb2576]">US.</span>
+                  CONTACT <span className="text-[#7a3983]">US.</span>
                </h1>
                <p className="text-gray-400 text-sm font-medium max-w-xl">
                   Reach out through our official channels for proposals or inquiries.
@@ -55,19 +55,19 @@ export default function Contact() {
         {/* Left Column: Contact Info */}
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-4">
-             <h3 className="text-[10px] font-bold text-[#1a1a1a] uppercase tracking-widest border-l-4 border-[#fb2576] pl-3">Official Uplink</h3>
-             <a href="mailto:contact@technoyogyx.com" className="group flex items-center gap-3 p-5 border border-gray-100 rounded-[3px] bg-white hover:border-[#fb2576] transition-all shadow-sm">
-                <div className="w-10 h-10 bg-gray-50 flex items-center justify-center text-[#fb2576] group-hover:bg-[#fb2576] group-hover:text-white transition-all rounded-[2px]">
+             <h3 className="text-[10px] font-bold text-[#1a1a1a] uppercase tracking-widest border-l-4 border-[#7a3983] pl-3">Official Uplink</h3>
+             <a href="mailto:contact@Technoyogyai.com" className="group flex items-center gap-3 p-5 border border-gray-100 rounded-[3px] bg-white hover:border-[#7a3983] transition-all shadow-sm">
+                <div className="w-10 h-10 bg-gray-50 flex items-center justify-center text-[#7a3983] group-hover:bg-[#7a3983] group-hover:text-white transition-all rounded-[2px]">
                    <Mail size={16} />
                 </div>
                 <div className="flex flex-col">
-                   <span className="text-[10px] font-bold text-[#1a1a1a] transition-colors group-hover:text-[#fb2576] truncate max-w-[150px]">contact@technoyogyx.com</span>
+                   <span className="text-[10px] font-bold text-[#1a1a1a] transition-colors group-hover:text-[#7a3983] truncate max-w-[150px]">contact@Technoyogyai.com</span>
                 </div>
              </a>
           </div>
 
           <div className="flex flex-col gap-4">
-             <h3 className="text-[10px] font-bold text-[#1a1a1a] uppercase tracking-widest border-l-4 border-[#fb2576] pl-3">Registry</h3>
+             <h3 className="text-[10px] font-bold text-[#1a1a1a] uppercase tracking-widest border-l-4 border-[#7a3983] pl-3">Registry</h3>
              <div className="grid grid-cols-2 gap-1.5">
                 {[
                   { label: 'Facebook', href: SOCIAL_LINKS.facebook },
@@ -76,7 +76,7 @@ export default function Contact() {
                   { label: 'Telegram', href: SOCIAL_LINKS.telegram },
                 ].map((s, i) => (
                   <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" 
-                     className="p-2.5 border border-gray-100 flex items-center justify-center text-[9px] font-bold text-gray-400 hover:border-[#fb2576] hover:text-[#fb2576] hover:bg-[#fb2576]/[0.02] transition-all rounded-[2px] uppercase tracking-widest">
+                     className="p-2.5 border border-gray-100 flex items-center justify-center text-[9px] font-bold text-gray-400 hover:border-[#7a3983] hover:text-[#7a3983] hover:bg-[#7a3983]/[0.02] transition-all rounded-[2px] uppercase tracking-widest">
                     {s.label}
                   </a>
                 ))}
@@ -93,42 +93,42 @@ export default function Contact() {
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="flex flex-col gap-2 group">
-                <div className="flex items-center gap-2 text-gray-300 group-focus-within:text-[#fb2576] transition-colors">
+                <div className="flex items-center gap-2 text-gray-300 group-focus-within:text-[#7a3983] transition-colors">
                   <User size={12} />
                   <label className="text-[9px] font-bold uppercase tracking-widest">Full Name</label>
                 </div>
                 <input name="name" type="text" required placeholder="John Doe" value={form.name} onChange={handleChange}
-                  className="bg-transparent border-b-2 border-[#fb2576]/20 focus:border-[#fb2576] outline-none py-2 font-bold text-sm transition-all placeholder:text-gray-100" />
+                  className="bg-transparent border-b-2 border-[#7a3983]/20 focus:border-[#7a3983] outline-none py-2 font-bold text-sm transition-all placeholder:text-gray-100" />
               </div>
               <div className="flex flex-col gap-2 group">
-                <div className="flex items-center gap-2 text-gray-300 group-focus-within:text-[#fb2576] transition-colors">
+                <div className="flex items-center gap-2 text-gray-300 group-focus-within:text-[#7a3983] transition-colors">
                   <AtSign size={12} />
                   <label className="text-[9px] font-bold uppercase tracking-widest">Email Address</label>
                 </div>
                 <input name="email" type="email" required placeholder="john@example.com" value={form.email} onChange={handleChange}
-                  className="bg-transparent border-b-2 border-[#fb2576]/20 focus:border-[#fb2576] outline-none py-2 font-bold text-sm transition-all placeholder:text-gray-100" />
+                  className="bg-transparent border-b-2 border-[#7a3983]/20 focus:border-[#7a3983] outline-none py-2 font-bold text-sm transition-all placeholder:text-gray-100" />
               </div>
             </div>
 
             <div className="flex flex-col gap-2 group">
-              <div className="flex items-center gap-2 text-gray-300 group-focus-within:text-[#fb2576] transition-colors">
+              <div className="flex items-center gap-2 text-gray-300 group-focus-within:text-[#7a3983] transition-colors">
                 <MessageSquare size={12} />
                 <label className="text-[9px] font-bold uppercase tracking-widest">Subject</label>
               </div>
               <input name="subject" type="text" required placeholder="Collaboration Inquiry" value={form.subject} onChange={handleChange}
-                className="bg-transparent border-b-2 border-[#fb2576]/20 focus:border-[#fb2576] outline-none py-2 font-bold text-sm transition-all placeholder:text-gray-100" />
+                className="bg-transparent border-b-2 border-[#7a3983]/20 focus:border-[#7a3983] outline-none py-2 font-bold text-sm transition-all placeholder:text-gray-100" />
             </div>
 
             <div className="flex flex-col gap-2 group">
-              <div className="flex items-center gap-2 text-gray-300 group-focus-within:text-[#fb2576] transition-colors">
+              <div className="flex items-center gap-2 text-gray-300 group-focus-within:text-[#7a3983] transition-colors">
                 <Send size={12} />
                 <label className="text-[9px] font-bold uppercase tracking-widest">Your Message</label>
               </div>
               <textarea name="message" required rows={3} placeholder="Type your message here..." value={form.message} onChange={handleChange}
-                className="bg-transparent border-b-2 border-[#fb2576]/20 focus:border-[#fb2576] outline-none py-2 font-bold text-sm transition-all placeholder:text-gray-100 resize-none" />
+                className="bg-transparent border-b-2 border-[#7a3983]/20 focus:border-[#7a3983] outline-none py-2 font-bold text-sm transition-all placeholder:text-gray-100 resize-none" />
             </div>
 
-            <button type="submit" disabled={status === 'sending'} className="mt-2 bg-[#fb2576] text-white py-4 text-[10px] font-bold uppercase tracking-[4px] rounded-[3px] shadow-xl shadow-[#fb2576]/20 group relative overflow-hidden transition-all hover:bg-[#d81b60] active:scale-95 disabled:bg-gray-400 flex items-center justify-center gap-3">
+            <button type="submit" disabled={status === 'sending'} className="mt-2 bg-[#7a3983] text-white py-4 text-[10px] font-bold uppercase tracking-[4px] rounded-[3px] shadow-xl shadow-[#7a3983]/20 group relative overflow-hidden transition-all hover:bg-[#d81b60] active:scale-95 disabled:bg-gray-400 flex items-center justify-center gap-3">
                {status === 'sending' ? (
                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                ) : (

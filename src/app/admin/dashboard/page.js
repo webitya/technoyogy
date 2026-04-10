@@ -53,7 +53,7 @@ export default async function AdminDashboard({ searchParams }) {
       {/* Stats Grid - Sharp & Industrial */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div className="stat-card">
-          <div className="stat-icon bg-gray-50 text-[#fb2576] border border-gray-100">
+          <div className="stat-icon bg-gray-50 text-[#7a3983] border border-gray-100">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
             </svg>
@@ -75,13 +75,13 @@ export default async function AdminDashboard({ searchParams }) {
           </div>
         </div>
         <div className="stat-card">
-          <div className="stat-icon bg-[#fb2576]/[0.04] text-[#fb2576] border border-[#fb2576]/10">
+          <div className="stat-icon bg-[#7a3983]/[0.04] text-[#7a3983] border border-[#7a3983]/10">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/>
             </svg>
           </div>
           <div>
-            <p className="text-2xl font-black text-[#fb2576] tracking-tighter">ONLINE</p>
+            <p className="text-2xl font-black text-[#7a3983] tracking-tighter">ONLINE</p>
             <p className="text-[9px] font-black tracking-widest text-gray-400 uppercase">PLATFORM STATUS</p>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default async function AdminDashboard({ searchParams }) {
       <div className="admin-card !p-0 shadow-sm">
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
           <div className="flex items-center gap-3">
-            <svg className="w-4 h-4 text-[#fb2576]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-[#7a3983]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
             </svg>
             <h2 className="font-black text-[#1a1a1a] text-xs uppercase tracking-widest">JOURNAL REGISTRY</h2>
@@ -146,7 +146,7 @@ export default async function AdminDashboard({ searchParams }) {
                     </div>
                   </td>
                   <td>
-                    <span className="text-[8px] font-black uppercase tracking-widest px-2.5 py-1 rounded-[2px] border border-[#fb2576]/10 bg-[#fb2576]/[0.03] text-[#fb2576]">
+                    <span className="text-[8px] font-black uppercase tracking-widest px-2.5 py-1 rounded-[2px] border border-[#7a3983]/10 bg-[#7a3983]/[0.03] text-[#7a3983]">
                       {blog.category || 'TECH'}
                     </span>
                   </td>
@@ -165,13 +165,13 @@ export default async function AdminDashboard({ searchParams }) {
                   <td className="!pr-6">
                     <div className="flex items-center justify-end gap-1.5 opacity-60 group-hover:opacity-100">
                       <a href={`/blog/${blog.slug}`} target="_blank" rel="noopener noreferrer"
-                        className="p-2 rounded-[2px] transition-all border border-gray-100 bg-white hover:border-[#fb2576] hover:text-[#fb2576]" title="PREVIEW">
+                        className="p-2 rounded-[2px] transition-all border border-gray-100 bg-white hover:border-[#7a3983] hover:text-[#7a3983]" title="PREVIEW">
                         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                         </svg>
                       </a>
                       <Link href={`/admin/dashboard/edit/${blog._id}`}
-                        className="p-2 rounded-[2px] transition-all border border-gray-100 bg-white hover:border-[#fb2576] hover:text-[#fb2576]" title="EDIT">
+                        className="p-2 rounded-[2px] transition-all border border-gray-100 bg-white hover:border-[#7a3983] hover:text-[#7a3983]" title="EDIT">
                         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M11 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-5M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4L16.5 3.5z"/>
                         </svg>

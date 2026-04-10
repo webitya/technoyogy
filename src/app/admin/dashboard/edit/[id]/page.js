@@ -94,7 +94,7 @@ export default function EditBlog() {
   if (fetching) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-white gap-4 pt-20">
-        <div className="w-12 h-12 border-4 border-[#fb2576] border-t-transparent rounded-[2px] animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-[#7a3983] border-t-transparent rounded-[2px] animate-spin"></div>
         <p className="font-black text-gray-300 uppercase tracking-widest text-[9px] mt-4">FETCHING PERSISTENT DATA STATE</p>
       </div>
     );
@@ -131,7 +131,7 @@ export default function EditBlog() {
             <div className="flex gap-0 mb-8 w-fit border border-gray-100">
               {['content', 'seo'].map(tab => (
                 <button key={tab} type="button" onClick={() => setActiveTab(tab)}
-                  className={`px-6 py-2 text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-2 ${activeTab === tab ? 'bg-[#fb2576] text-white' : 'text-gray-400 hover:text-[#fb2576]'}`}>
+                  className={`px-6 py-2 text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-2 ${activeTab === tab ? 'bg-[#7a3983] text-white' : 'text-gray-400 hover:text-[#7a3983]'}`}>
                   {tab === 'content' ? (
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M11 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-5M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
                   ) : (
@@ -178,14 +178,14 @@ export default function EditBlog() {
 
           <div className="w-72 flex-shrink-0 border-l border-gray-100 p-6 flex flex-col gap-8 overflow-y-auto bg-gray-50/50">
             <div className="flex flex-col gap-4">
-              <h3 className="text-[9px] font-black uppercase tracking-widest text-[#fb2576]">Category</h3>
+              <h3 className="text-[9px] font-black uppercase tracking-widest text-[#7a3983]">Category</h3>
               <div className="grid grid-cols-2 gap-1.5">
                 {CATEGORIES.map(cat => (
                   <button key={cat} type="button" onClick={() => setCategory(cat)}
                     className={`text-[9px] font-black uppercase tracking-wider px-2 py-3 transition-all duration-100 border ${
                       category === cat 
-                        ? 'bg-[#fb2576] text-white border-[#fb2576]' 
-                        : 'bg-white text-gray-400 border-gray-100 hover:border-[#fb2576] hover:text-[#fb2576]'
+                        ? 'bg-[#7a3983] text-white border-[#7a3983]' 
+                        : 'bg-white text-gray-400 border-gray-100 hover:border-[#7a3983] hover:text-[#7a3983]'
                     }`}>
                     {cat}
                   </button>
@@ -193,21 +193,21 @@ export default function EditBlog() {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <h3 className="text-[9px] font-black uppercase tracking-widest text-[#fb2576]">Upload Thumbnail</h3>
+              <h3 className="text-[9px] font-black uppercase tracking-widest text-[#7a3983]">Upload Thumbnail</h3>
               <div className="relative group">
                 {(imagePreview || existingImage) ? (
                   <div className="relative border border-gray-100 bg-white p-1">
                     <img src={imagePreview || existingImage} alt="" className="w-full aspect-video object-cover" />
-                    <div className="absolute inset-0 bg-[#fb2576]/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <div className="absolute inset-0 bg-[#7a3983]/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         <button type="button" onClick={() => { setImageFile(null); setImagePreview(''); setExistingImage(''); }}
-                            className="bg-white text-[#fb2576] py-1.5 px-4 font-black uppercase text-[9px] tracking-widest border border-white">
+                            className="bg-white text-[#7a3983] py-1.5 px-4 font-black uppercase text-[9px] tracking-widest border border-white">
                             OVERWRITE MEDIA
                         </button>
                     </div>
                   </div>
                 ) : (
                   <button type="button" onClick={() => fileRef.current?.click()}
-                    className="w-full aspect-video flex flex-col items-center justify-center gap-2 cursor-pointer bg-white border border-dashed border-[#fb2576]/50 hover:bg-[#fb2576]/[0.02] hover:border-[#fb2576]">
+                    className="w-full aspect-video flex flex-col items-center justify-center gap-2 cursor-pointer bg-white border border-dashed border-[#7a3983]/50 hover:bg-[#7a3983]/[0.02] hover:border-[#7a3983]">
                     <svg className="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4"/>
                     </svg>

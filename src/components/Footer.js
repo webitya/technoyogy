@@ -20,7 +20,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="pt-16 pb-12 bg-[#111111] text-white">
+    <footer className="pt-16 pb-12 bg-[#442152] text-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 border-b border-white/5 pb-12">
 
@@ -29,7 +29,7 @@ const Footer = () => {
             <Link href="/" className="relative h-8 w-fit flex items-center">
               <img 
                 src="/technoyogylogo.png" 
-                alt="Technoyogyx" 
+                alt="Technoyogyai" 
                 className="h-full w-auto object-contain"
                 style={{ filter: 'brightness(0) invert(1)' }} 
               />
@@ -55,7 +55,7 @@ const Footer = () => {
 
           {/* Useful Links */}
           <div className="flex flex-col gap-6">
-            <h3 className="text-base font-bold uppercase tracking-widest text-[#fb2576]">Links</h3>
+            <h3 className="text-base font-bold uppercase tracking-widest text-[#7a3983]">Links</h3>
             <ul className="flex flex-col gap-3 text-white/50 text-sm font-medium">
               <li><Link href="/" className="hover:text-primary transition-colors">Home</Link></li>
               <li><Link href="/blogs" className="hover:text-primary transition-colors">Blogs</Link></li>
@@ -66,7 +66,7 @@ const Footer = () => {
 
           {/* Connect */}
           <div className="flex flex-col gap-6">
-            <h3 className="text-base font-bold uppercase tracking-widest text-[#fb2576]">Connect</h3>
+            <h3 className="text-base font-bold uppercase tracking-widest text-[#7a3983]">Connect</h3>
             <ul className="flex flex-col gap-3 text-white/50 text-sm font-medium">
               <li><a href={SOCIAL_LINKS.instagram} className="hover:text-primary transition-all">Instagram</a></li>
               <li><a href={SOCIAL_LINKS.youtube} className="hover:text-primary transition-all">YouTube</a></li>
@@ -77,11 +77,11 @@ const Footer = () => {
 
           {/* Contact */}
           <div className="flex flex-col gap-6">
-            <h3 className="text-base font-bold uppercase tracking-widest text-[#fb2576]">Registry</h3>
+            <h3 className="text-base font-bold uppercase tracking-widest text-[#7a3983]">Registry</h3>
             <ul className="flex flex-col gap-4 text-white/50 text-sm font-medium">
               <li className="flex items-center gap-3">
                 <Mail size={14} className="text-primary" />
-                <span>contact@technoyogyx.com</span>
+                <span>contact@Technoyogyai.com</span>
               </li>
               <li className="flex items-center gap-3">
                  <div className="w-3.5 h-3.5"><TgSVG /></div>
@@ -92,7 +92,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-white/30 text-[10px] font-bold uppercase tracking-widest border-t border-white/5 mt-8">
-          <p>© 2026 Technoyogyx. Built by Yog Prakash Sah.</p>
+          <p>© 2026 Technoyogyai. Built by Yog Prakash Sah.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
             <Link href="#" className="hover:text-white transition-colors">Terms</Link>

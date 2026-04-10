@@ -47,7 +47,7 @@ function EnquiriesContent() {
   if (loading && enquiries.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-white gap-4">
-        <div className="w-10 h-10 border-4 border-[#fb2576] border-t-transparent rounded-[2px] animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-[#7a3983] border-t-transparent rounded-[2px] animate-spin"></div>
         <p className="text-[9px] font-bold text-gray-300 uppercase tracking-widest">FETCHING COMMUNICATION LOGS</p>
       </div>
     );
@@ -62,7 +62,7 @@ function EnquiriesContent() {
       <div className="admin-card !p-0 shadow-sm border-gray-100 bg-white rounded-[3px]">
         <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <svg className="w-4 h-4 text-[#fb2576]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-[#7a3983]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
             </svg>
             <h2 className="font-bold text-[#1a1a1a] text-xs uppercase tracking-widest">INCOMING DISPATCHES</h2>
@@ -105,7 +105,7 @@ function EnquiriesContent() {
                   </td>
                   <td className="!pr-6 text-right">
                     <button onClick={() => handleDelete(enq._id)}
-                      className="p-2 border border-gray-100 bg-white text-gray-400 hover:border-[#fb2576] hover:text-[#fb2576] transition-all rounded-[2px] opacity-0 group-hover:opacity-100" title="DELETE">
+                      className="p-2 border border-gray-100 bg-white text-gray-400 hover:border-[#7a3983] hover:text-[#7a3983] transition-all rounded-[2px] opacity-0 group-hover:opacity-100" title="DELETE">
                         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                         </svg>
@@ -138,19 +138,19 @@ function EnquiriesContent() {
             </p>
             <div className="flex items-center gap-1">
               <Link href={`/admin/dashboard/enquiries?page=${page - 1}`}
-                className={`p-2 border border-gray-100 bg-white transition-all rounded-[3px] ${page <= 1 ? 'opacity-20 pointer-events-none' : 'hover:border-[#fb2576] hover:text-[#fb2576] text-gray-400'}`}>
+                className={`p-2 border border-gray-100 bg-white transition-all rounded-[3px] ${page <= 1 ? 'opacity-20 pointer-events-none' : 'hover:border-[#7a3983] hover:text-[#7a3983] text-gray-400'}`}>
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7"/></svg>
               </Link>
               <div className="flex items-center gap-0.5">
                 {[...Array(meta.pages)].map((_, i) => (
                   <Link key={i} href={`/admin/dashboard/enquiries?page=${i + 1}`}
-                    className={`min-w-[28px] h-7 flex items-center justify-center text-[10px] font-bold border transition-all rounded-[3px] ${page === i + 1 ? 'bg-[#fb2576] text-white border-[#fb2576]' : 'bg-white border-gray-100 text-gray-400 hover:text-[#fb2576]'}`}>
+                    className={`min-w-[28px] h-7 flex items-center justify-center text-[10px] font-bold border transition-all rounded-[3px] ${page === i + 1 ? 'bg-[#7a3983] text-white border-[#7a3983]' : 'bg-white border-gray-100 text-gray-400 hover:text-[#7a3983]'}`}>
                     {(i + 1).toString().padStart(2, '0')}
                   </Link>
                 ))}
               </div>
               <Link href={`/admin/dashboard/enquiries?page=${page + 1}`}
-                className={`p-2 border border-gray-100 bg-white transition-all rounded-[3px] ${page >= meta.pages ? 'opacity-20 pointer-events-none' : 'hover:border-[#fb2576] hover:text-[#fb2576] text-gray-400'}`}>
+                className={`p-2 border border-gray-100 bg-white transition-all rounded-[3px] ${page >= meta.pages ? 'opacity-20 pointer-events-none' : 'hover:border-[#7a3983] hover:text-[#7a3983] text-gray-400'}`}>
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7"/></svg>
               </Link>
             </div>
@@ -165,7 +165,7 @@ export default function EnquiriesPage() {
   return (
     <Suspense fallback={
        <div className="flex flex-col items-center justify-center min-h-screen bg-white gap-4">
-         <div className="w-10 h-10 border-4 border-[#fb2576] border-t-transparent rounded-[2px] animate-spin"></div>
+         <div className="w-10 h-10 border-4 border-[#7a3983] border-t-transparent rounded-[2px] animate-spin"></div>
          <p className="text-[9px] font-bold text-gray-300 uppercase tracking-widest">INITIALIZING UPLINK...</p>
        </div>
     }>

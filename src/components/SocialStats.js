@@ -26,14 +26,14 @@ const SocialStats = () => {
               rel="noopener noreferrer"
               key={index}
               whileHover={{ y: -3 }}
-              className="flex items-center gap-4 p-5 border border-[#fb2576]/40 rounded-[3px] bg-white group hover:border-[#fb2576] transition-all duration-300 shadow-sm"
+              className="flex items-center gap-4 p-5 border border-[#7a3983]/40 rounded-[3px] bg-white group hover:border-[#7a3983] transition-all duration-300 shadow-sm"
             >
               <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-gray-50 text-gray-400 group-hover:bg-primary group-hover:text-white transition-all rounded-[2px] border border-gray-100">
                 {stat.icon}
               </div>
               <div className="min-w-0 flex flex-col items-start gap-1">
                 <span className="text-sm sm:text-base font-bold text-[#1a1a1a] tracking-tight uppercase">{stat.platform}</span>
-                <p className="text-2xl sm:text-3xl font-bold text-[#fb2576] tracking-tighter leading-none mb-1 uppercase">
+                <p className="text-2xl sm:text-3xl font-bold text-[#7a3983] tracking-tighter leading-none mb-1 uppercase">
                   {stat.value}
                 </p>
                 <p className="text-[10px] font-bold text-gray-300 uppercase tracking-[2px] leading-none">

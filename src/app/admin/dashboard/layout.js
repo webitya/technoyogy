@@ -2,7 +2,7 @@ import '../admin.css';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 
 export const metadata = {
-  title: 'Admin — Technoyogyx Content Studio',
+  title: 'Admin — Technoyogyai Content Studio',
   description: 'Admin panel for managing blog posts',
 };
 

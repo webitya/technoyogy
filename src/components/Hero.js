@@ -6,8 +6,8 @@ const Hero = () => {
   return (
     <section className="relative min-h-[60vh] md:min-h-[75vh] flex items-start pt-20 md:pt-15 overflow-hidden bg-white">
       {/* Background Decor - Refined & Tactical */}
-      <div className="absolute top-0 right-0 w-[45%] h-full bg-[#fb2576]/[0.02] -z-10 rounded-l-[150px] md:rounded-l-[200px] border-l border-gray-50 flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.03] rotate-12 scale-150" style={{ backgroundImage: 'radial-gradient(#fb2576 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+      <div className="absolute top-0 right-0 w-[45%] h-full bg-[#442152]/[0.03] -z-10 rounded-l-[150px] md:rounded-l-[200px] border-l border-gray-50 flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.05] rotate-12 scale-150" style={{ backgroundImage: 'radial-gradient(#442152 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10 w-full">
@@ -20,7 +20,7 @@ const Hero = () => {
         >
           <h1 className="text-5xl md:text-7xl font-bold leading-[1.05] text-[#1a1a1a] uppercase tracking-tight pt-4">
             DECODING THE <br />
-            <span className="text-[#fb2576]">NEXT GEN</span> OF <br />
+            <span className="text-[#7a3983]">NEXT GEN</span> OF <br />
             TECHNOLOGY.
           </h1>
           <p className="text-lg text-gray-500 max-w-lg font-medium leading-relaxed">
@@ -48,10 +48,10 @@ const Hero = () => {
             {/* Design Element - Social Card */}
              <div className="absolute -bottom-6 -right-6 bg-white p-5 border border-gray-100 shadow-2xl z-20 hidden lg:block rounded-[2px]">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-[#fb2576] flex items-center justify-center text-white font-black text-[10px]">TG</div>
+                  <div className="w-10 h-10 bg-[#7a3983] flex items-center justify-center text-white font-black text-[10px]">TG</div>
                   <div>
                     <h4 className="font-black text-[10px] uppercase tracking-widest">JOIN COMMAND</h4>
-                    <p className="text-[9px] font-bold text-gray-400 mt-0.5">@TECHNOGRAPHYX</p>
+                    <p className="text-[9px] font-bold text-gray-400 mt-0.5">@TechnographyAI</p>
                   </div>
                 </div>
              </div>

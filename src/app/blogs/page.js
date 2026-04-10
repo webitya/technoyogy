@@ -25,14 +25,14 @@ export default async function AllBlogs() {
       
       {/* Simplified Header */}
       <section className="pt-32 pb-8 relative overflow-hidden bg-white">
-         <div className="absolute top-0 right-0 w-[40%] h-full bg-[#fb2576]/[0.01] -z-10 rounded-bl-[150px] border-l border-gray-50 overflow-hidden flex items-center justify-center">
-             <div className="absolute inset-0 opacity-[0.03] rotate-12 scale-150" style={{ backgroundImage: 'radial-gradient(#fb2576 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+         <div className="absolute top-0 right-0 w-[40%] h-full bg-[#7a3983]/[0.01] -z-10 rounded-bl-[150px] border-l border-gray-50 overflow-hidden flex items-center justify-center">
+             <div className="absolute inset-0 opacity-[0.03] rotate-12 scale-150" style={{ backgroundImage: 'radial-gradient(#7a3983 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
          </div>
          <div className="max-w-7xl mx-auto px-6 flex flex-col items-start gap-4">
             {/* Category Filter Bar - Kept for UX */}
             <div className="flex flex-wrap gap-2 w-full">
                {categories.map(cat => (
-                  <button key={cat} className={`px-5 py-2.5 text-[9px] font-black uppercase tracking-widest border transition-all ${cat === 'ALL' ? 'bg-[#fb2576] text-white border-[#fb2576]' : 'bg-white text-gray-400 border-gray-100 hover:border-primary hover:text-primary rounded-[2px]'}`}>
+                  <button key={cat} className={`px-5 py-2.5 text-[9px] font-black uppercase tracking-widest border transition-all ${cat === 'ALL' ? 'bg-[#7a3983] text-white border-[#7a3983]' : 'bg-white text-gray-400 border-gray-100 hover:border-primary hover:text-primary rounded-[2px]'}`}>
                     {cat}
                   </button>
                ))}
@@ -52,12 +52,12 @@ export default async function AllBlogs() {
                       alt={blog.title}
                       className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute top-6 left-6 px-4 py-2 bg-[#fb2576] text-white rounded-[2px] text-[10px] font-bold tracking-widest uppercase shadow-lg shadow-[#fb2576]/30">
+                    <div className="absolute top-6 left-6 px-4 py-2 bg-[#7a3983] text-white rounded-[2px] text-[10px] font-bold tracking-widest uppercase shadow-lg shadow-[#7a3983]/30">
                       {blog.category || "TECH"}
                     </div>
                   </div>
                   <div className="flex flex-col gap-3 p-4">
-                    <h3 className="text-xl font-bold leading-tight group-hover:text-[#fb2576] transition-colors line-clamp-2 uppercase tracking-tight">
+                    <h3 className="text-xl font-bold leading-tight group-hover:text-[#7a3983] transition-colors line-clamp-2 uppercase tracking-tight">
                       {blog.title}
                     </h3>
                     <p className="text-gray-500 line-clamp-3 text-base leading-relaxed font-medium">
