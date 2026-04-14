@@ -56,12 +56,12 @@ export default function Contact() {
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-4">
              <h3 className="text-[10px] font-bold text-[#1a1a1a] uppercase tracking-widest border-l-4 border-[#7a3983] pl-3">Official Uplink</h3>
-             <a href="mailto:contact@Technoyogyai.com" className="group flex items-center gap-3 p-5 border border-gray-100 rounded-[3px] bg-white hover:border-[#7a3983] transition-all shadow-sm">
+             <a href="mailto:yogsah.business@gmail.com" className="group flex items-center gap-3 p-5 border border-gray-100 rounded-[3px] bg-white hover:border-[#7a3983] transition-all shadow-sm">
                 <div className="w-10 h-10 bg-gray-50 flex items-center justify-center text-[#7a3983] group-hover:bg-[#7a3983] group-hover:text-white transition-all rounded-[2px]">
                    <Mail size={16} />
                 </div>
                 <div className="flex flex-col">
-                   <span className="text-[10px] font-bold text-[#1a1a1a] transition-colors group-hover:text-[#7a3983] truncate max-w-[150px]">contact@Technoyogyai.com</span>
+                   <span className="text-[10px] font-bold text-[#1a1a1a] transition-colors group-hover:text-[#7a3983] truncate max-w-[200px]">yogsah.business@gmail.com</span>
                 </div>
              </a>
           </div>
