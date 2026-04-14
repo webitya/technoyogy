@@ -5,11 +5,28 @@ import ViewTracker from '@/components/ViewTracker';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
+export async function generateMetadata(props) {
+  const { slug } = await props.params;
+  const blog = await getBlog(slug);
+  if (!blog) return { title: 'Not Found' };
+  
+  return {
+    title: blog.metaTitle || blog.title,
+    description: blog.metaDescription || blog.excerpt,
+    openGraph: {
+      title: blog.metaTitle || blog.title,
+      description: blog.metaDescription || blog.excerpt,
+      images: [blog.image],
+    },
+  };
+}
+
 async function getBlog(slug) {
   try {
     const client = await clientPromise;
     const db = client.db("technoyogy");
-    const blog = await db.collection("blogs").findOne({ slug });
+    // Only fetch if published
+    const blog = await db.collection("blogs").findOne({ slug, status: { $ne: 'draft' } });
     return JSON.parse(JSON.stringify(blog));
   } catch (e) {
     console.error(e);
@@ -46,9 +63,13 @@ export default async function BlogPost(props) {
       {/* Blog Metadata & Title Container */}
       <section className="pt-8 sm:pt-12 pb-8">
         <div className="max-w-4xl mx-auto px-6 flex flex-col gap-5 items-start text-left">
-           <span className="px-5 py-2 bg-[#7a3983] text-white rounded-[2px] text-[10px] font-bold tracking-[3px] uppercase shadow-lg shadow-[#7a3983]/20">
-             {blog.category || "TECH"}
-           </span>
+           <div className="flex flex-wrap gap-2">
+             {(blog.categories || (blog.category ? [blog.category] : ["TECH"])).map((cat, idx) => (
+               <span key={idx} className="px-5 py-2 bg-[#7a3983] text-white rounded-[2px] text-[10px] font-bold tracking-[3px] uppercase shadow-lg shadow-[#7a3983]/20">
+                 {cat}
+               </span>
+             ))}
+           </div>
            <h1 className="text-3xl sm:text-5xl font-bold leading-[1.1] text-[#1a1a1a] tracking-tighter uppercase">
              {blog.title}
            </h1>

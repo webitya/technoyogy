@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -11,6 +12,7 @@ const YtSVG = () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24
 const TgSVG = () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>;
 
 const Navbar = () => {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -35,11 +37,11 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-8 items-center font-bold uppercase tracking-widest text-[11px]">
-            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-            <Link href="/blogs" className="hover:text-primary transition-colors">Blogs</Link>
-            <Link href="/shop" className="hover:text-primary transition-all font-black text-[#7a3983] border-b-2 border-[#7a3983]">Shop</Link>
-            <Link href="/about" className="hover:text-primary transition-colors">About</Link>
-            <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
+            <Link href="/" className={`${pathname === '/' ? 'text-[#7a3983] border-b-2 border-[#7a3983]' : 'hover:text-primary'} transition-all`}>Home</Link>
+            <Link href="/blogs" className={`${pathname.startsWith('/blog') ? 'text-[#7a3983] border-b-2 border-[#7a3983]' : 'hover:text-primary'} transition-all`}>Blogs</Link>
+            <Link href="/shop" className={`${pathname.startsWith('/shop') ? 'text-[#7a3983] border-b-2 border-[#7a3983]' : 'hover:text-primary'} transition-all`}>Shop</Link>
+            <Link href="/about" className={`${pathname === '/about' ? 'text-[#7a3983] border-b-2 border-[#7a3983]' : 'hover:text-primary'} transition-all`}>About</Link>
+            <Link href="/contact" className={`${pathname === '/contact' ? 'text-[#7a3983] border-b-2 border-[#7a3983]' : 'hover:text-primary'} transition-all`}>Contact</Link>
             <Link href="/admin" className="px-5 py-2 bg-primary text-white rounded-[2px] hover:shadow-lg hover:shadow-primary/20 transition-all">Sign In</Link>
           </div>
 
@@ -83,11 +85,11 @@ const Navbar = () => {
                 </div>
 
                 <div className="flex flex-col gap-8 text-2xl font-bold uppercase tracking-tighter text-[#1a1a1a]">
-                  <Link href="/" onClick={() => setIsOpen(false)} className="hover:text-primary transition-colors w-fit">Home</Link>
-                  <Link href="/blogs" onClick={() => setIsOpen(false)} className="hover:text-primary transition-colors w-fit">Blogs</Link>
-                  <Link href="/shop" onClick={() => setIsOpen(false)} className="text-[#7a3983] transition-colors w-fit">Shop</Link>
-                  <Link href="/about" onClick={() => setIsOpen(false)} className="hover:text-primary transition-colors w-fit">About</Link>
-                  <Link href="/contact" onClick={() => setIsOpen(false)} className="hover:text-primary transition-colors w-fit">Contact</Link>
+                  <Link href="/" onClick={() => setIsOpen(false)} className={`transition-colors w-fit ${pathname === '/' ? 'text-[#7a3983]' : 'hover:text-primary'}`}>Home</Link>
+                  <Link href="/blogs" onClick={() => setIsOpen(false)} className={`transition-colors w-fit ${pathname.startsWith('/blog') ? 'text-[#7a3983]' : 'hover:text-primary'}`}>Blogs</Link>
+                  <Link href="/shop" onClick={() => setIsOpen(false)} className={`transition-colors w-fit ${pathname.startsWith('/shop') ? 'text-[#7a3983]' : 'hover:text-primary'}`}>Shop</Link>
+                  <Link href="/about" onClick={() => setIsOpen(false)} className={`transition-colors w-fit ${pathname === '/about' ? 'text-[#7a3983]' : 'hover:text-primary'}`}>About</Link>
+                  <Link href="/contact" onClick={() => setIsOpen(false)} className={`transition-colors w-fit ${pathname === '/contact' ? 'text-[#7a3983]' : 'hover:text-primary'}`}>Contact</Link>
                 </div>
 
                 <div className="mt-auto">

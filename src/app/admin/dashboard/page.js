@@ -33,7 +33,9 @@ export default async function AdminDashboard({ searchParams }) {
 
   const { blogs, total, pages } = await getAdminBlogs(page, limit);
   const totalBlogs = total;
-  const categories = [...new Set(blogs.map(b => b.category || 'TECH'))];
+  
+  // Extract unique categories from all blogs
+  const categories = [...new Set(blogs.flatMap(b => b.categories || (b.category ? [b.category] : ['TECH'])))];
   const latest = blogs[0];
 
   return (
@@ -140,15 +142,27 @@ export default async function AdminDashboard({ searchParams }) {
                         />
                       </div>
                       <div className="min-w-0">
-                        <p className="font-black text-[#1a1a1a] truncate max-w-[320px] text-[11px] uppercase tracking-tight">{blog.title}</p>
+                        <div className="flex items-center gap-2">
+                          <p className="font-black text-[#1a1a1a] truncate max-w-[280px] text-[11px] uppercase tracking-tight">{blog.title}</p>
+                          {blog.status === 'draft' && (
+                            <span className="text-[7px] font-black bg-amber-100 text-amber-600 px-1 border border-amber-200 tracking-widest rounded-[1px]">DRAFT</span>
+                          )}
+                        </div>
                         <p className="text-[9px] font-bold text-gray-400 truncate max-w-[320px] mt-0.5 tracking-tighter uppercase">ID: {blog.slug || blog._id.slice(-8)}</p>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <span className="text-[8px] font-black uppercase tracking-widest px-2.5 py-1 rounded-[2px] border border-[#7a3983]/10 bg-[#7a3983]/[0.03] text-[#7a3983]">
-                      {blog.category || 'TECH'}
-                    </span>
+                    <div className="flex flex-wrap gap-1">
+                      {(blog.categories || (blog.category ? [blog.category] : ['TECH'])).slice(0, 2).map((cat, idx) => (
+                        <span key={idx} className="text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-[2px] border border-[#7a3983]/10 bg-[#7a3983]/[0.03] text-[#7a3983]">
+                          {cat}
+                        </span>
+                      ))}
+                      {(blog.categories?.length > 2) && (
+                        <span className="text-[8px] font-black text-gray-300">+{blog.categories.length - 2}</span>
+                      )}
+                    </div>
                   </td>
                   <td>
                     <div className="flex items-center gap-1.5">

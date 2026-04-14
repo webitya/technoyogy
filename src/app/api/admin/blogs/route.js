@@ -23,7 +23,10 @@ export async function POST(request) {
     const title = formData.get('title');
     const excerpt = formData.get('excerpt');
     const content = formData.get('content');
-    const category = formData.get('category');
+    const categories = formData.get('categories') ? JSON.parse(formData.get('categories')) : [];
+    const status = formData.get('status') || 'published';
+    const metaTitle = formData.get('metaTitle') || '';
+    const metaDescription = formData.get('metaDescription') || '';
     const imageFile = formData.get('image');
 
     let imageUrl = '';
@@ -65,10 +68,13 @@ export async function POST(request) {
       slug: finalSlug,
       excerpt: excerpt.trim(),
       content,
-      category,
+      categories,
+      status, // 'published' or 'draft'
+      metaTitle: metaTitle.trim(),
+      metaDescription: metaDescription.trim(),
       tags: tagsArray,
       image: imageUrl,
-      views: 0, // Initialize views
+      views: 0, 
       createdAt: new Date(),
       updatedAt: new Date(),
     };

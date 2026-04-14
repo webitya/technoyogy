@@ -44,7 +44,10 @@ export async function PUT(request, { params }) {
     const title = formData.get('title');
     const excerpt = formData.get('excerpt');
     const content = formData.get('content');
-    const category = formData.get('category');
+    const categories = formData.get('categories') ? JSON.parse(formData.get('categories')) : [];
+    const status = formData.get('status') || 'published';
+    const metaTitle = formData.get('metaTitle') || '';
+    const metaDescription = formData.get('metaDescription') || '';
     const imageFile = formData.get('image');
     const tags = formData.get('tags') || '';
     const tagsArray = tags.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
@@ -53,7 +56,10 @@ export async function PUT(request, { params }) {
       title: title.trim(), 
       excerpt: excerpt.trim(), 
       content, 
-      category, 
+      categories,
+      status,
+      metaTitle: metaTitle.trim(),
+      metaDescription: metaDescription.trim(),
       tags: tagsArray, 
       updatedAt: new Date() 
     };

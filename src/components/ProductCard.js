@@ -5,6 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 const ProductCard = ({ product }) => {
   const [currentImage, setCurrentImage] = useState(0);
 
+  if (!product || !product.images || !Array.isArray(product.images) || product.images.length === 0) {
+    return null; // Or a placeholder
+  }
+
   const nextImage = (e) => {
     e.preventDefault();
     setCurrentImage((prev) => (prev + 1) % product.images.length);

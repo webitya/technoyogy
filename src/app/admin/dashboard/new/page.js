@@ -1,18 +1,24 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
 const RichEditor = dynamic(() => import('@/components/admin/RichEditor'), { ssr: false });
 
-const CATEGORIES = ['TECH', 'LIFESTYLE', 'FUTURE', 'NEWS', 'AI', 'GADGETS', 'REVIEW'];
+const CATEGORIES_DEFAULT = ['TECH', 'LIFESTYLE', 'FUTURE', 'NEWS', 'AI', 'GADGETS', 'REVIEW'];
 
 export default function NewBlog() {
   const [title, setTitle] = useState('');
   const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
-  const [category, setCategory] = useState('TECH');
+  const [selectedCategories, setSelectedCategories] = useState(['TECH']);
+  const [availableCategories, setAvailableCategories] = useState(CATEGORIES_DEFAULT);
+  const [newCategoryName, setNewCategoryName] = useState('');
+  const [showAddCategory, setShowAddCategory] = useState(false);
+  const [status, setStatus] = useState('published');
+  const [metaTitle, setMetaTitle] = useState('');
+  const [metaDescription, setMetaDescription] = useState('');
   const [tags, setTags] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState('');
@@ -21,6 +27,21 @@ export default function NewBlog() {
   const [activeTab, setActiveTab] = useState('content');
   const router = useRouter();
   const fileRef = useRef();
+
+  useEffect(() => {
+    const fetchCats = async () => {
+      try {
+        const res = await fetch('/api/admin/categories');
+        if (res.ok) {
+          const data = await res.json();
+          setAvailableCategories(data.map(c => c.name));
+        }
+      } catch (err) {
+        console.error('Failed to fetch categories');
+      }
+    };
+    fetchCats();
+  }, []);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -31,8 +52,38 @@ export default function NewBlog() {
     reader.readAsDataURL(file);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const toggleCategory = (cat) => {
+    setSelectedCategories(prev => 
+      prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat]
+    );
+  };
+
+  const handleAddCategory = async () => {
+    if (!newCategoryName.trim()) return;
+    try {
+      const res = await fetch('/api/admin/categories', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: newCategoryName })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setAvailableCategories(prev => [...prev, data.name]);
+        setSelectedCategories(prev => [...prev, data.name]);
+        setNewCategoryName('');
+        setShowAddCategory(false);
+      } else {
+        const data = await res.json();
+        alert(data.message || 'Failed to add category');
+      }
+    } catch (err) {
+      alert('Error adding category');
+    }
+  };
+
+  const handleSubmit = async (e, forcedStatus) => {
+    if (e) e.preventDefault();
+    const finalStatus = forcedStatus || status;
     if (!content || content === '<p></p>') { setError('Content cannot be empty'); return; }
     setLoading(true);
     setError('');
@@ -41,7 +92,10 @@ export default function NewBlog() {
       formData.append('title', title);
       formData.append('excerpt', excerpt);
       formData.append('content', content);
-      formData.append('category', category);
+      formData.append('categories', JSON.stringify(selectedCategories));
+      formData.append('status', finalStatus);
+      formData.append('metaTitle', metaTitle);
+      formData.append('metaDescription', metaDescription);
       formData.append('tags', tags);
       if (imageFile) formData.append('image', imageFile);
 
@@ -88,7 +142,7 @@ export default function NewBlog() {
 
           <div className="flex items-center gap-3">
             {error && <span className="text-[9px] font-black px-3 py-1.5 border border-primary text-primary tracking-widest uppercase">{error}</span>}
-            <button type="button" onClick={() => router.back()} className="admin-btn-secondary text-[10px] !py-2.5">CANCEL</button>
+            <button type="button" onClick={() => handleSubmit(null, 'draft')} disabled={loading} className="admin-btn-secondary text-[10px] !py-2.5">SAVE AS DRAFT</button>
             <button type="submit" disabled={loading} className="admin-btn-primary text-[10px] !shadow-none !py-2.5">
               {loading ? (
                 <><span className="w-3 h-3 border-2 border-white/20 border-t-white animate-spin" /> EXECUTING...</>
@@ -148,7 +202,15 @@ export default function NewBlog() {
                   <h3 className="text-[11px] font-black text-gray-500 uppercase tracking-widest">METADATA ARTIFACTS</h3>
                   <div className="grid grid-cols-1 gap-6">
                     <div className="flex flex-col gap-3">
-                        <label className="admin-label">TAXONOMY IDENTIFIERS</label>
+                        <label className="admin-label">META TITLE</label>
+                        <input className="admin-input" placeholder="SEO Title Overlay..." value={metaTitle} onChange={e => setMetaTitle(e.target.value)} />
+                    </div>
+                    <div className="flex flex-col gap-3">
+                        <label className="admin-label">META DESCRIPTION</label>
+                        <textarea className="admin-input resize-none" rows={3} placeholder="SEO Description Fragment..." value={metaDescription} onChange={e => setMetaDescription(e.target.value)} />
+                    </div>
+                    <div className="flex flex-col gap-3">
+                        <label className="admin-label">TAXONOMY IDENTIFIERS (TAGS)</label>
                         <input className="admin-input" placeholder="e.g. AI, FUTURE, GADGETS" value={tags} onChange={e => setTags(e.target.value)} />
                         <p className="text-[8px] font-black text-gray-300 ml-1 tracking-widest uppercase">DELIMIT WITH COMMAS FOR DISTINCT TAGS</p>
                     </div>
@@ -163,12 +225,31 @@ export default function NewBlog() {
           <div className="w-72 flex-shrink-0 border-l border-gray-100 p-6 flex flex-col gap-8 bg-gray-50/50">
 
             <div className="flex flex-col gap-4">
-              <h3 className="text-[9px] font-black uppercase tracking-widest text-[#7a3983]">Category</h3>
+              <div className="flex items-center justify-between">
+                <h3 className="text-[9px] font-black uppercase tracking-widest text-[#7a3983]">Categories</h3>
+                <button type="button" onClick={() => setShowAddCategory(!showAddCategory)} className="text-[8px] font-black text-[#7a3983] border-b border-[#7a3983] leading-none pb-0.5">
+                  {showAddCategory ? 'CANCEL' : 'ADD NEW'}
+                </button>
+              </div>
+              
+              {showAddCategory && (
+                <div className="flex gap-1">
+                  <input 
+                    className="admin-input !py-1.5 !text-[9px] uppercase font-black" 
+                    placeholder="NAME..." 
+                    value={newCategoryName}
+                    onChange={e => setNewCategoryName(e.target.value)}
+                    onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), handleAddCategory())}
+                  />
+                  <button type="button" onClick={handleAddCategory} className="bg-[#7a3983] text-white px-3 text-[9px] font-black">ADD</button>
+                </div>
+              )}
+
               <div className="grid grid-cols-2 gap-1.5">
-                {CATEGORIES.map(cat => (
-                  <button key={cat} type="button" onClick={() => setCategory(cat)}
+                {availableCategories.map(cat => (
+                  <button key={cat} type="button" onClick={() => toggleCategory(cat)}
                     className={`text-[9px] font-black uppercase tracking-wider px-2 py-3 transition-all duration-100 border ${
-                      category === cat 
+                      selectedCategories.includes(cat)
                         ? 'bg-[#7a3983] text-white border-[#7a3983]' 
                         : 'bg-white text-gray-400 border-gray-100 hover:border-[#7a3983] hover:text-[#7a3983]'
                     }`}>

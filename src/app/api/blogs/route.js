@@ -7,7 +7,7 @@ export async function GET(request) {
     const limit = parseInt(searchParams.get('limit')) || 3;
     const client = await clientPromise;
     const db = client.db("technoyogy");
-    const blogs = await db.collection("blogs").find({}).sort({ createdAt: -1 }).limit(limit).toArray();
+    const blogs = await db.collection("blogs").find({ status: { $ne: 'draft' } }).sort({ createdAt: -1 }).limit(limit).toArray();
     return NextResponse.json(JSON.parse(JSON.stringify(blogs)));
   } catch (error) {
     return NextResponse.json({ message: 'Error fetching blogs' }, { status: 500 });

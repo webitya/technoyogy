@@ -9,8 +9,10 @@ export async function GET() {
     const client = await clientPromise;
     const db = client.db('technoyogy');
     const products = await db.collection('products').find({}).sort({ createdAt: -1 }).toArray();
-    return NextResponse.json(products);
+    console.log(`Fetched ${products.length} products from DB`);
+    return NextResponse.json(JSON.parse(JSON.stringify(products)));
   } catch (error) {
+    console.error('SHOP_GET_ERROR:', error);
     return NextResponse.json({ message: 'Error' }, { status: 500 });
   }
 }

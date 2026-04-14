@@ -7,7 +7,8 @@ async function getAllBlogs() {
   try {
     const client = await clientPromise;
     const db = client.db("technoyogy");
-    const blogs = await db.collection("blogs").find({}).sort({ createdAt: -1 }).toArray();
+    // Only fetch published blogs
+    const blogs = await db.collection("blogs").find({ status: { $ne: 'draft' } }).sort({ createdAt: -1 }).toArray();
     return JSON.parse(JSON.stringify(blogs));
   } catch (e) {
     console.error(e);
@@ -17,7 +18,7 @@ async function getAllBlogs() {
 
 export default async function AllBlogs() {
   const blogs = await getAllBlogs();
-  const categories = ['ALL', ...new Set(blogs.map(b => b.category || 'TECH'))];
+  const categories = ['ALL', ...new Set(blogs.flatMap(b => b.categories || (b.category ? [b.category] : ['TECH'])))];
 
   return (
     <main className="min-h-screen bg-gray-50/30">
@@ -53,7 +54,7 @@ export default async function AllBlogs() {
                       className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute top-6 left-6 px-4 py-2 bg-[#7a3983] text-white rounded-[2px] text-[10px] font-bold tracking-widest uppercase shadow-lg shadow-[#7a3983]/30">
-                      {blog.category || "TECH"}
+                      {(blog.categories?.[0]) || blog.category || "TECH"}
                     </div>
                   </div>
                   <div className="flex flex-col gap-3 p-4">

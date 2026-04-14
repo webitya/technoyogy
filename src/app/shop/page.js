@@ -2,6 +2,8 @@ import clientPromise from '@/lib/mongodb';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const metadata = {
   title: 'Technoyogyai Shop - Tactical Tech Assets',
@@ -26,22 +28,10 @@ export default async function Shop() {
     <main className="min-h-screen bg-white">
       <Navbar />
 
-      {/* Hero / Header Section */}
-      <section className="pt-32 pb-16 bg-white border-b border-gray-100/50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col gap-2">
-            <h1 className="text-5xl md:text-6xl font-black text-[#1a1a1a] tracking-tighter uppercase leading-none">
-              TACTICAL <span className="text-[#7a3983]">SHOP.</span>
-            </h1>
-            <p className="text-gray-400 text-xs font-black uppercase tracking-[4px] mt-2">
-              Curated Assets For High-Fidelity Lifestyles
-            </p>
-          </div>
-        </div>
-      </section>
+
 
       {/* Grid Section */}
-      <section className="py-20 px-6">
+      <section className="pt-32 pb-20 px-6">
         <div className="max-w-7xl mx-auto">
           {products.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
