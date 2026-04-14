@@ -138,7 +138,7 @@ export default function BlogActions({ slug, initialLikes = 0, initialShares = 0 
   };
 
   return (
-    <div className={`flex gap-4 items-center transition-all duration-500 ${isInitialLoading ? 'opacity-30 blur-[2px]' : 'opacity-100 blur-0'}`}>
+    <div className={`flex gap-4 items-center transition-all duration-500 ${isInitialLoading ? 'opacity-30' : 'opacity-100'}`}>
       <button 
         onClick={handleLike} 
         disabled={isInitialLoading}
