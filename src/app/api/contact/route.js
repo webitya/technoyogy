@@ -22,6 +22,8 @@ export async function POST(request) {
       status: 'NEW'
     };
 
+    const result = await db.collection('enquiries').insertOne(enquiry);
+
     // Email Notification Configuration
     try {
       if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {

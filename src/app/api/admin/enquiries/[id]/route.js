@@ -17,6 +17,8 @@ async function verifyAuth() {
 }
 
 export async function DELETE(request, { params }) {
+  const { id } = await params;
+
   if (!(await verifyAuth())) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
@@ -24,7 +26,7 @@ export async function DELETE(request, { params }) {
   try {
     const client = await clientPromise;
     const db = client.db('technoyogy');
-    await db.collection('enquiries').deleteOne({ _id: new ObjectId(params.id) });
+    await db.collection('enquiries').deleteOne({ _id: new ObjectId(id) });
     return NextResponse.json({ message: 'Enquiry deleted successfully' }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: 'An error occurred' }, { status: 500 });
@@ -32,17 +34,19 @@ export async function DELETE(request, { params }) {
 }
 
 export async function PATCH(request, { params }) {
+  const { id } = await params;
+
   if (!(await verifyAuth())) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
   try {
-    const { status } = await request.json();
+    const { status, feedback } = await request.json();
     const client = await clientPromise;
     const db = client.db('technoyogy');
     await db.collection('enquiries').updateOne(
-      { _id: new ObjectId(params.id) },
-      { $set: { status } }
+      { _id: new ObjectId(id) },
+      { $set: { status, feedback, updatedAt: new Date() } }
     );
     return NextResponse.json({ message: 'Status updated successfully' }, { status: 200 });
   } catch (error) {

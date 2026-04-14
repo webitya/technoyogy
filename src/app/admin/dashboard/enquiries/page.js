@@ -48,13 +48,20 @@ function EnquiriesContent() {
     }
   };
 
-  const handleStatusUpdate = async (id, status) => {
+  const handleStatusUpdate = async (id, status, currentFeedback = '') => {
+    let feedback = currentFeedback;
+    if (status === 'READ' || status === 'REJECTED') {
+      const actionLabel = status === 'READ' ? 'acceptance' : 'rejection';
+      feedback = prompt(`Update ${actionLabel} feedback/notes:`, currentFeedback);
+      if (feedback === null) return; // Cancelled
+    }
+
     setProcessing(`${status}-${id}`);
     try {
       const res = await fetch(`/api/admin/enquiries/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status })
+        body: JSON.stringify({ status, feedback })
       });
       if (res.ok) {
         fetchEnquiries();
@@ -105,13 +112,13 @@ function EnquiriesContent() {
             </thead>
             <tbody>
               {enquiries.length > 0 ? enquiries.map((enq) => (
-                <tr key={enq._id} className="group transition-colors border-b border-gray-50 last:border-0 hover:bg-gray-50/50">
+                <tr key={enq._id} className={`group transition-all border-b border-gray-50 last:border-0 ${enq.status === 'READ' ? 'bg-green-50/40' : enq.status === 'REJECTED' ? 'bg-red-50/30' : 'hover:bg-gray-50/50'}`}>
                   <td className="!pl-6">
                     <div className="flex flex-col">
                         <div className="flex items-center gap-2">
                           <p className="font-bold text-[#1a1a1a] text-[11px] uppercase tracking-tight">{enq.name}</p>
-                          {enq.status === 'READ' && <span className="text-[7px] bg-green-50 text-green-600 px-1 rounded-[1px] font-bold border border-green-100">READ</span>}
-                          {enq.status === 'REJECTED' && <span className="text-[7px] bg-red-50 text-red-600 px-1 rounded-[1px] font-bold border border-red-100">REJECTED</span>}
+                          {enq.status === 'READ' && <span className="text-[7px] bg-green-500 text-white px-1 rounded-[1px] font-bold border border-green-600">ACCEPTED</span>}
+                          {enq.status === 'REJECTED' && <span className="text-[7px] bg-red-500 text-white px-1 rounded-[1px] font-bold border border-red-600">REJECTED</span>}
                           {(!enq.status || enq.status === 'NEW') && <span className="text-[7px] bg-blue-50 text-blue-600 px-1 rounded-[1px] font-bold border border-blue-100 animate-pulse">NEW</span>}
                         </div>
                         <p className="text-[9px] font-bold text-gray-400 mt-0.5 tracking-tighter uppercase">{enq.email}</p>
@@ -123,43 +130,51 @@ function EnquiriesContent() {
                     </span>
                   </td>
                   <td>
-                    <p className="text-[11px] font-medium text-gray-500 line-clamp-2 max-w-md uppercase tracking-tighter leading-tight">
-                      &quot;{enq.message}&quot;
-                    </p>
+                    <div className="flex flex-col gap-1 py-3">
+                      <p className="text-[11px] font-medium text-gray-500 line-clamp-2 max-w-md uppercase tracking-tighter leading-tight">
+                        &quot;{enq.message}&quot;
+                      </p>
+                      {enq.feedback && (
+                        <div className={`flex items-center gap-1.5 mt-1 border-t pt-1 ${enq.status === 'READ' ? 'border-green-100' : 'border-red-100'}`}>
+                          <svg className={`w-2.5 h-2.5 shrink-0 ${enq.status === 'READ' ? 'text-green-600' : 'text-red-500'}`} fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                          </svg>
+                          <p className={`text-[9px] font-bold italic uppercase truncate max-w-xs ${enq.status === 'READ' ? 'text-green-700' : 'text-red-600'}`}>{enq.feedback}</p>
+                        </div>
+                      )}
+                    </div>
                   </td>
                   <td className="hidden md:table-cell text-[10px] font-bold text-gray-400 uppercase tracking-widest">
                     {new Date(enq.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: '2-digit' })}
                   </td>
                   <td className="!pr-6 text-right">
                     <div className="flex items-center justify-end gap-1.5">
-                      {enq.status !== 'READ' && (
-                        <button 
-                          onClick={() => handleStatusUpdate(enq._id, 'READ')}
-                          disabled={processing === `READ-${enq._id}`}
-                          className="p-2 border border-gray-100 bg-white text-gray-400 hover:border-green-500 hover:text-green-500 transition-all rounded-[2px] disabled:opacity-50" title="MARK AS READ">
-                            {processing === `READ-${enq._id}` ? (
-                              <div className="w-3.5 h-3.5 border-2 border-gray-200 border-t-green-500 rounded-full animate-spin"></div>
-                            ) : (
-                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                              </svg>
-                            )}
-                        </button>
-                      )}
-                      {enq.status !== 'REJECTED' && (
-                        <button 
-                          onClick={() => handleStatusUpdate(enq._id, 'REJECTED')}
-                          disabled={processing === `REJECTED-${enq._id}`}
-                          className="p-2 border border-gray-100 bg-white text-gray-400 hover:border-orange-500 hover:text-orange-500 transition-all rounded-[2px] disabled:opacity-50" title="REJECT">
-                            {processing === `REJECTED-${enq._id}` ? (
-                              <div className="w-3.5 h-3.5 border-2 border-gray-200 border-t-orange-500 rounded-full animate-spin"></div>
-                            ) : (
-                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-                              </svg>
-                            )}
-                        </button>
-                      )}
+                      <button 
+                        onClick={() => handleStatusUpdate(enq._id, 'READ', enq.feedback)}
+                        disabled={processing === `READ-${enq._id}`}
+                        className={`p-2 border transition-all rounded-[2px] disabled:opacity-50 ${enq.status === 'READ' ? 'bg-green-500 border-green-600 text-white' : 'border-gray-100 bg-white text-gray-400 hover:border-green-500 hover:text-green-500'}`} 
+                        title="ACCEPT / ADD FEEDBACK">
+                          {processing === `READ-${enq._id}` ? (
+                            <div className={`w-3.5 h-3.5 border-2 rounded-full animate-spin ${enq.status === 'READ' ? 'border-white/30 border-t-white' : 'border-gray-200 border-t-green-500'}`}></div>
+                          ) : (
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                            </svg>
+                          )}
+                      </button>
+                      <button 
+                        onClick={() => handleStatusUpdate(enq._id, 'REJECTED', enq.feedback)}
+                        disabled={processing === `REJECTED-${enq._id}`}
+                        className={`p-2 border transition-all rounded-[2px] disabled:opacity-50 ${enq.status === 'REJECTED' ? 'bg-red-500 border-red-600 text-white' : 'border-gray-100 bg-white text-gray-400 hover:border-orange-500 hover:text-orange-500'}`} 
+                        title="REJECT / ADD FEEDBACK">
+                          {processing === `REJECTED-${enq._id}` ? (
+                            <div className={`w-3.5 h-3.5 border-2 rounded-full animate-spin ${enq.status === 'REJECTED' ? 'border-white/30 border-t-white' : 'border-gray-200 border-t-orange-500'}`}></div>
+                          ) : (
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                          )}
+                      </button>
                       <button 
                         onClick={() => handleDelete(enq._id)}
                         disabled={processing === `delete-${enq._id}`}
