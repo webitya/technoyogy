@@ -7,6 +7,7 @@ function EnquiriesContent() {
   const [enquiries, setEnquiries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [meta, setMeta] = useState({ total: 0, pages: 0 });
+  const [processing, setProcessing] = useState(null);
   const searchParams = useSearchParams();
   const page = parseInt(searchParams.get('page')) || 1;
   const limit = 10;
@@ -34,6 +35,7 @@ function EnquiriesContent() {
 
   const handleDelete = async (id) => {
     if (!confirm('Permanently remove this enquiry?')) return;
+    setProcessing(`delete-${id}`);
     try {
       const res = await fetch(`/api/admin/enquiries/${id}`, { method: 'DELETE' });
       if (res.ok) {
@@ -41,6 +43,26 @@ function EnquiriesContent() {
       }
     } catch (err) {
       alert('Delete failed');
+    } finally {
+      setProcessing(null);
+    }
+  };
+
+  const handleStatusUpdate = async (id, status) => {
+    setProcessing(`${status}-${id}`);
+    try {
+      const res = await fetch(`/api/admin/enquiries/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      if (res.ok) {
+        fetchEnquiries();
+      }
+    } catch (err) {
+      alert('Update failed');
+    } finally {
+      setProcessing(null);
     }
   };
 
@@ -86,7 +108,12 @@ function EnquiriesContent() {
                 <tr key={enq._id} className="group transition-colors border-b border-gray-50 last:border-0 hover:bg-gray-50/50">
                   <td className="!pl-6">
                     <div className="flex flex-col">
-                        <p className="font-bold text-[#1a1a1a] text-[11px] uppercase tracking-tight">{enq.name}</p>
+                        <div className="flex items-center gap-2">
+                          <p className="font-bold text-[#1a1a1a] text-[11px] uppercase tracking-tight">{enq.name}</p>
+                          {enq.status === 'READ' && <span className="text-[7px] bg-green-50 text-green-600 px-1 rounded-[1px] font-bold border border-green-100">READ</span>}
+                          {enq.status === 'REJECTED' && <span className="text-[7px] bg-red-50 text-red-600 px-1 rounded-[1px] font-bold border border-red-100">REJECTED</span>}
+                          {(!enq.status || enq.status === 'NEW') && <span className="text-[7px] bg-blue-50 text-blue-600 px-1 rounded-[1px] font-bold border border-blue-100 animate-pulse">NEW</span>}
+                        </div>
                         <p className="text-[9px] font-bold text-gray-400 mt-0.5 tracking-tighter uppercase">{enq.email}</p>
                     </div>
                   </td>
@@ -104,12 +131,48 @@ function EnquiriesContent() {
                     {new Date(enq.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: '2-digit' })}
                   </td>
                   <td className="!pr-6 text-right">
-                    <button onClick={() => handleDelete(enq._id)}
-                      className="p-2 border border-gray-100 bg-white text-gray-400 hover:border-[#7a3983] hover:text-[#7a3983] transition-all rounded-[2px] opacity-0 group-hover:opacity-100" title="DELETE">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                        </svg>
-                    </button>
+                    <div className="flex items-center justify-end gap-1.5">
+                      {enq.status !== 'READ' && (
+                        <button 
+                          onClick={() => handleStatusUpdate(enq._id, 'READ')}
+                          disabled={processing === `READ-${enq._id}`}
+                          className="p-2 border border-gray-100 bg-white text-gray-400 hover:border-green-500 hover:text-green-500 transition-all rounded-[2px] disabled:opacity-50" title="MARK AS READ">
+                            {processing === `READ-${enq._id}` ? (
+                              <div className="w-3.5 h-3.5 border-2 border-gray-200 border-t-green-500 rounded-full animate-spin"></div>
+                            ) : (
+                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                              </svg>
+                            )}
+                        </button>
+                      )}
+                      {enq.status !== 'REJECTED' && (
+                        <button 
+                          onClick={() => handleStatusUpdate(enq._id, 'REJECTED')}
+                          disabled={processing === `REJECTED-${enq._id}`}
+                          className="p-2 border border-gray-100 bg-white text-gray-400 hover:border-orange-500 hover:text-orange-500 transition-all rounded-[2px] disabled:opacity-50" title="REJECT">
+                            {processing === `REJECTED-${enq._id}` ? (
+                              <div className="w-3.5 h-3.5 border-2 border-gray-200 border-t-orange-500 rounded-full animate-spin"></div>
+                            ) : (
+                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            )}
+                        </button>
+                      )}
+                      <button 
+                        onClick={() => handleDelete(enq._id)}
+                        disabled={processing === `delete-${enq._id}`}
+                        className="p-2 border border-gray-100 bg-white text-gray-400 hover:border-red-500 hover:text-red-500 transition-all rounded-[2px] disabled:opacity-50" title="DELETE">
+                          {processing === `delete-${enq._id}` ? (
+                            <div className="w-3.5 h-3.5 border-2 border-gray-200 border-t-red-500 rounded-full animate-spin"></div>
+                          ) : (
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                            </svg>
+                          )}
+                      </button>
+                    </div>
                   </td>
                 </tr>
               )) : (

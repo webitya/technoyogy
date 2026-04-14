@@ -85,7 +85,29 @@ export default function Contact() {
         </div>
 
         {/* Right Column: Contact Form */}
-        <div className="md:col-span-2 bg-white border border-gray-100 rounded-[3px] p-8 md:p-10 shadow-2xl relative">
+        <div className="md:col-span-2 bg-white border border-gray-100 rounded-[3px] p-8 md:p-10 shadow-2xl relative overflow-hidden">
+          <AnimatePresence>
+            {status === 'sent' && (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="absolute inset-0 bg-white z-50 flex flex-col items-center justify-center text-center p-6"
+              >
+                <div className="w-20 h-20 bg-[#7a3983]/10 rounded-full flex items-center justify-center text-[#7a3983] mb-6 animate-bounce">
+                  <Send size={40} />
+                </div>
+                <h2 className="text-3xl font-bold text-[#1a1a1a] uppercase mb-2">Thank You!</h2>
+                <p className="text-gray-500 font-medium mb-8">Your message has been received successfully.<br/>We will contact you soon.</p>
+                <button 
+                  onClick={() => setStatus('')}
+                  className="px-8 py-3 bg-[#7a3983] text-white text-[10px] font-bold uppercase tracking-widest rounded-[2px]"
+                >
+                  SEND ANOTHER MESSAGE
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           <div className="flex flex-col gap-1 mb-8">
              <h2 className="text-xl font-bold text-[#1a1a1a] uppercase tracking-tight">Send Message</h2>
              <p className="text-[10px] font-medium text-gray-300 uppercase tracking-widest">Global response time: 24h</p>
