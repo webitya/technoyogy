@@ -103,7 +103,7 @@ const Footer = () => {
         </div>
 
         <div className="w-full flex justify-center pt-6 text-[10px] font-medium tracking-wide text-white/20">
-           <p>Website Design By <a href="https://webitya.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-all">Webitya</a></p>
+           <p>Website Design By <a href="https://webitya.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-all">Webitya</a></p>
         </div>
       </div>
     </footer>

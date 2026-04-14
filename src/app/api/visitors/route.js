@@ -17,14 +17,17 @@ export async function POST() {
     const client = await clientPromise;
     const db = client.db('technoyogy');
     
-    const result = await db.collection('stats').findOneAndUpdate(
+    // In mongodb v6+, findOneAndUpdate returns the document directly
+    const doc = await db.collection('stats').findOneAndUpdate(
       { _id: 'visitors' },
       { $inc: { count: 1 } },
       { upsert: true, returnDocument: 'after' }
     );
     
-    return NextResponse.json({ count: result?.count || 1 });
+    return NextResponse.json({ count: doc?.count || 1 });
   } catch (error) {
+    console.error('Visitor counter error:', error);
     return NextResponse.json({ count: 0 });
   }
 }
+

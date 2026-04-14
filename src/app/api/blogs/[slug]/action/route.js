@@ -1,6 +1,30 @@
 import clientPromise from '@/lib/mongodb';
 import { NextResponse } from 'next/server';
 
+export async function GET(request, { params }) {
+  try {
+    const { slug } = await params;
+    const client = await clientPromise;
+    const db = client.db('technoyogy');
+
+    const blog = await db.collection('blogs').findOne(
+      { slug },
+      { projection: { likes: 1, shares: 1 } }
+    );
+
+    if (!blog) {
+      return NextResponse.json({ message: 'Blog not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ 
+      likes: Number(blog.likes || 0),
+      shares: Number(blog.shares || 0)
+    }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ message: 'Error fetching stats' }, { status: 500 });
+  }
+}
+
 export async function POST(request, { params }) {
   try {
     const { slug } = await params;
@@ -23,21 +47,15 @@ export async function POST(request, { params }) {
       update = { $inc: { shares: 1 } };
     }
 
-    console.log(`Action: ${action} for slug: ${slug}`);
-    const result = await db.collection('blogs').findOneAndUpdate(
+    const doc = await db.collection('blogs').findOneAndUpdate(
       { slug },
       update,
       { returnDocument: 'after' }
     );
 
-    if (!result) {
-      console.log('Blog not found');
+    if (!doc) {
       return NextResponse.json({ message: 'Blog not found' }, { status: 404 });
     }
-
-    // In some driver versions findOneAndUpdate returns an object with a 'value' property
-    const doc = result.value || result;
-    console.log(`Updated doc: ${doc.title}, Likes: ${doc.likes}, Shares: ${doc.shares}`);
 
     return NextResponse.json({ 
       likes: Number(doc.likes || 0),
@@ -49,3 +67,4 @@ export async function POST(request, { params }) {
     return NextResponse.json({ message: 'Error updating' }, { status: 500 });
   }
 }
+
