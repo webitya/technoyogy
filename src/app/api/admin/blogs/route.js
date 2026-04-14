@@ -74,7 +74,9 @@ export async function POST(request) {
       metaDescription: metaDescription.trim(),
       tags: tagsArray,
       image: imageUrl,
-      views: 0, 
+      views: 0,
+      likes: 0,
+      shares: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
     };

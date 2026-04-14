@@ -23,6 +23,7 @@ export async function POST(request, { params }) {
       update = { $inc: { shares: 1 } };
     }
 
+    console.log(`Action: ${action} for slug: ${slug}`);
     const result = await db.collection('blogs').findOneAndUpdate(
       { slug },
       update,
@@ -30,12 +31,17 @@ export async function POST(request, { params }) {
     );
 
     if (!result) {
+      console.log('Blog not found');
       return NextResponse.json({ message: 'Blog not found' }, { status: 404 });
     }
 
+    // In some driver versions findOneAndUpdate returns an object with a 'value' property
+    const doc = result.value || result;
+    console.log(`Updated doc: ${doc.title}, Likes: ${doc.likes}, Shares: ${doc.shares}`);
+
     return NextResponse.json({ 
-      likes: result.likes || 0,
-      shares: result.shares || 0
+      likes: Number(doc.likes || 0),
+      shares: Number(doc.shares || 0)
     }, { status: 200 });
 
   } catch (error) {

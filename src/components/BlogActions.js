@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { Heart, Share2 } from 'lucide-react';
 
 export default function BlogActions({ slug, initialLikes = 0, initialShares = 0 }) {
-  const [likes, setLikes] = useState(initialLikes);
-  const [shares, setShares] = useState(initialShares);
+  const [likes, setLikes] = useState(Number(initialLikes || 0));
+  const [shares, setShares] = useState(Number(initialShares || 0));
   const [hasLiked, setHasLiked] = useState(false);
   const [isSharing, setIsSharing] = useState(false);
 
@@ -36,17 +36,20 @@ export default function BlogActions({ slug, initialLikes = 0, initialShares = 0 
     }
 
     try {
-      const res = await fetch(`/api/blogs/${slug}/action`, {
+      const res = await fetch(`/api/blogs/${encodeURIComponent(slug)}/action`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: newHasLiked ? 'like' : 'unlike' })
       });
       if (res.ok) {
         const data = await res.json();
-        setLikes(data.likes);
+        console.log('Action response:', data);
+        if (typeof data.likes === 'number') {
+          setLikes(data.likes);
+        }
       }
-    } catch(e) {
-      console.error(e);
+    } catch(err) {
+      console.error('Like action failed:', err);
     }
   };
 
@@ -69,14 +72,16 @@ export default function BlogActions({ slug, initialLikes = 0, initialShares = 0 
         alert('Link copied to clipboard!');
       }
 
-      const res = await fetch(`/api/blogs/${slug}/action`, {
+      const res = await fetch(`/api/blogs/${encodeURIComponent(slug)}/action`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'share' })
       });
       if (res.ok) {
         const data = await res.json();
-        setShares(data.shares);
+        if (typeof data.shares === 'number') {
+          setShares(data.shares);
+        }
       }
     } catch (e) {
       // User might cancel share
