@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+import BlogActions from './BlogActions';
+
 const SkeletonCard = () => (
   <div className="flex flex-col gap-6 p-4 rounded-[40px] bg-white border border-gray-100 shadow-sm animate-pulse">
     <div className="aspect-[4/3] rounded-[30px] bg-gray-100" />
@@ -54,12 +56,11 @@ export default function HomeBlogs() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
       {Array.isArray(blogs) && blogs.map((blog) => (
-        <Link 
-          href={`/blog/${blog.slug}`} 
+        <div 
           key={blog._id} 
-          className="group flex flex-col gap-6 p-4 rounded-[3px] bg-white border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+          className="group flex flex-col p-4 rounded-[3px] bg-white border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 h-full"
         >
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[2px]">
+          <Link href={`/blog/${blog.slug}`} className="relative aspect-[4/3] overflow-hidden rounded-[2px] block shrink-0">
             <img
               src={blog.image || "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"}
               alt={blog.title}
@@ -68,19 +69,22 @@ export default function HomeBlogs() {
             <div className="absolute top-6 left-6 px-4 py-2 bg-[#7a3983] text-white rounded-[2px] text-xs font-black tracking-widest uppercase shadow-lg shadow-[#7a3983]/30">
               {blog.category || "TECH"}
             </div>
-          </div>
-          <div className="flex flex-col gap-3 p-4">
-            <h3 className="text-xl font-black leading-tight group-hover:text-[#7a3983] transition-colors line-clamp-2 uppercase tracking-tight italic">
-              {blog.title}
-            </h3>
-            <p className="text-gray-500 line-clamp-3 text-base leading-relaxed font-medium">
-              {blog.excerpt}
-            </p>
-            <div className="flex items-center pt-4 border-t border-gray-50 text-[10px] font-black text-gray-300 uppercase tracking-widest italic">
-              <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
+          </Link>
+          <div className="flex flex-col gap-3 p-4 flex-1">
+            <Link href={`/blog/${blog.slug}`} className="block">
+              <h3 className="text-xl font-black leading-tight group-hover:text-[#7a3983] transition-colors line-clamp-2 uppercase tracking-tight italic mb-3">
+                {blog.title}
+              </h3>
+              <p className="text-gray-500 line-clamp-3 text-base leading-relaxed font-medium">
+                {blog.excerpt}
+              </p>
+            </Link>
+            <div className="flex flex-col sm:flex-row justify-between sm:items-center pt-4 border-t border-gray-50 mt-auto text-[10px] items-start gap-4">
+              <span className="font-black text-gray-300 uppercase tracking-widest italic">{new Date(blog.createdAt).toLocaleDateString()}</span>
+              <BlogActions slug={blog.slug} initialLikes={blog.likes} initialShares={blog.shares} />
             </div>
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );

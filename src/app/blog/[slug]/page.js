@@ -2,6 +2,7 @@ import clientPromise from '@/lib/mongodb';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ViewTracker from '@/components/ViewTracker';
+import BlogActions from '@/components/BlogActions';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
@@ -73,12 +74,14 @@ export default async function BlogPost(props) {
            <h1 className="text-3xl sm:text-5xl font-bold leading-[1.1] text-[#1a1a1a] tracking-tighter uppercase">
              {blog.title}
            </h1>
-           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-gray-400 font-bold uppercase tracking-widest text-[10px]">
+           <div className="flex flex-wrap items-center gap-x-6 gap-y-4 text-gray-400 font-bold uppercase tracking-widest text-[10px]">
              <span className="text-[#1a1a1a]">BY YOG PRAKASH SAH</span>
              <span className="hidden sm:inline">•</span>
              <span>{new Date(blog.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span>
              <span className="hidden sm:inline">•</span>
              <span>5 MIN READ</span>
+             <span className="hidden sm:inline border-l border-gray-200 h-4 mx-2"></span>
+             <BlogActions slug={slug} initialLikes={blog.likes || 0} initialShares={blog.shares || 0} />
            </div>
         </div>
       </section>
